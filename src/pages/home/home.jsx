@@ -1,4 +1,3 @@
-import { ThreeP } from '@mui/icons-material';
 import Typography from '@mui/material/Typography';
 
 function home() {
@@ -6,8 +5,9 @@ function home() {
   return (
     <>
       <Typography variant="h1">Libre???</Typography>
-      <h2>Testing for pontano font</h2>
-      <Typography variant="h2">Ok, this should've actually worked</Typography>
+      <Typography variant="h3">Testing for smaller font</Typography>
+      <Typography variant="body1">Ok, this should've actually worked</Typography>
+      <Typography variant="p">Testing p size</Typography>
       
     </>
   )

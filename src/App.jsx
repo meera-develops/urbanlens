@@ -1,9 +1,12 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Typography from '@mui/material/Typography';
 import Home from "./pages/home/home";
 import Explore from "./pages/explore/explore";
 import Community from './pages/community/community';
 import Login from "./pages/login/login";
+import Navbar from "./components/navbar";
+
 
 //build navbar next 
 
@@ -11,15 +14,15 @@ function App() {
 
   return (
     <>
-      <h1>URBAN LENS</h1>
       <Router>
-        <nav>
+        {/* <nav>
           <Link to="/">Home</Link> |{" "}
           <Link to="/explore">Explore</Link> |{" "}
           <Link to="/communityboard">Community</Link> |{" "}
           <Link to="/login">Login</Link>
           
-        </nav>
+        </nav> */}
+        <Navbar />
         <Routes>
           <Route 
           exact path="/"

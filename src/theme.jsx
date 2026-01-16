@@ -27,6 +27,25 @@ let theme = createTheme({
             fontFamily: 'Libre Baskerville'
         },
         h2: {
+            fontFamily: 'Libre BaskerVille'
+        },
+        h3: {
+            fontFamily: 'Libre Baskerville'
+        },
+        body1: {
+            fontFamily: 'Pontano Sans'
+        },
+        body2: {
+            fontFamily: 'Pontano Sans'
+        },
+        body3: {
+            fontFamily: 'Pontano Sans'
+        },
+        accessories: {
+            fontFamily: 'Pontano Sans',
+            fontSize: '2rem'
+        },
+        forms: {
             fontFamily: 'Pontano Sans'
         }
     }
