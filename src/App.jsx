@@ -5,14 +5,13 @@ import Explore from "./pages/explore/explore";
 import Community from './pages/community/community';
 import Login from "./pages/login/login";
 
-
+//build navbar next 
 
 function App() {
 
   return (
     <>
-      <h1>Welcome to our Capstone Site </h1>
-      <h2>Watch us grow here</h2>
+      <h1>URBAN LENS</h1>
       <Router>
         <nav>
           <Link to="/">Home</Link> |{" "}

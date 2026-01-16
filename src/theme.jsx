@@ -1,0 +1,35 @@
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+
+let theme = createTheme({
+    palette: {
+        primary: {
+            main: '#32582C'
+        },
+        secondary: {
+            main: '#90aa55'
+        },
+        accent: {
+            main: '#97D071'
+        },
+        filter: {
+            main: '#789174'
+        },
+        text: {
+            main: '#2C2C2C'
+        },
+        background: {
+            main: '#fcfbf6'
+        },
+    },
+    typography: {
+        fontFamily: " 'Libre Baskerville', 'Pontano Sans', sans-serif",
+        h1: {
+            fontFamily: 'Libre Baskerville'
+        },
+        h2: {
+            fontFamily: 'Pontano Sans'
+        }
+    }
+});
+
+export default theme;
