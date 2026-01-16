@@ -4,12 +4,12 @@ import { Link, NavLink } from 'react-router-dom';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import MenuIcon from '@mui/icons-material/Menu';
 import './navbar.css';
-import Typography from '@mui/material/Typography';
 import keyLogo from '../assets/img/logo.png';
+import SearchBar from './searchbar';
 
 //navbar will have to update to change from "log in" to "my account" upon successful login 
 
-//input key logo 
+//fix mobile issue opening the menu 
 
 const pages=[
     { label: 'Home', path: '/' },
@@ -32,41 +32,6 @@ function navbar() {
         <>
             <AppBar position="static">
                 <Toolbar sx={{justifyContent: 'center'}}>
-                    <Link to="/" sx={{display: {xs: 'none', md:'flex'}}} aria-label='logo'>
-                        <img 
-                        src={keyLogo}
-                        alt="Urban Lens Logo"
-                        style={{width: 170, height: 'auto', marginRight: 30}}
-                        />
-                    </Link>
-
-                    <Box sx={{
-                        display:{xs: 'none', md: 'flex',
-                        gap: 18,
-                        }}}>
-                        {pages.map((page)=>(
-                            <Button 
-                            key={page.path} 
-                            component={NavLink} 
-                            to={page.path}
-                            sx={{ fontWeight: 'semi-bold',
-                                fontSize: '1.5rem',
-                                color: 'inherit',
-                                '&.active': {
-                                    color: 'accent.main',
-                                },
-                                '&:hover': {
-                                    color: 'accent.main',
-                                    backgroundColor: 'transparent',
-                                    transform: 'scale(1.08)',
-                                    transition: 'transform 0.7s, color 0.8s',
-                                }
-                             }}
-                            >
-                                {page.label}
-                            </Button>
-                        ))}
-                    </Box>
                     <Box sx={{display:{xs: 'flex', md: 'none'}}}>
                         <IconButton size='large' edge='start' color='inherit' onClick={openMenu}>
                             <MenuIcon />
@@ -85,13 +50,70 @@ function navbar() {
                             </MenuList>
                         </Menu>
                     </Box>
-                    <IconButton size='large' edge='start' color='inherit' aria-label='logo' sx={{display:{xs: 'flex', md: 'none'}}}>
-                        <LocalLibraryIcon/>
-                    </IconButton>
-                    <Typography variant="accessories" component="div" sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>Testing</Typography>
+                    <Box component={Link}
+                        to="/" 
+                        // sx={{display: {xs: 'none', md:'flex'}}} 
+                        aria-label='logo'
+                    >
+                        <img 
+                        src={keyLogo}
+                        alt="Urban Lens Logo"
+                        style={{width: 170, height: 'auto', marginRight: 30}}
+                        />
+                    </Box>
+
+                    <Box sx={{
+                        display:{xs: 'none', md: 'flex'},
+                        gap: 4,
+                        alignItems: 'center'
+                        }}>
+                        {pages.map((page)=>(
+                            <Button 
+                            key={page.path} 
+                            component={NavLink} 
+                            to={page.path}
+                            sx={{ fontWeight: 'semi-bold',
+                                fontSize: {lg: '1.1rem', xl: '1.5rem'},
+                                color: 'inherit',
+                                '&.active': {
+                                    color: 'accent.main',
+                                },
+                                '&:hover': {
+                                    color: 'accent.main',
+                                    backgroundColor: 'transparent',
+                                    transform: 'scale(1.08)',
+                                    transition: 'transform 0.6s, color 0.8s',
+                                }
+                             }}
+                            >
+                                {page.label}
+                            </Button>
+                        ))}
+                        <Box sx={{
+                            ml:{ lg: 4, xl: 12 }
+                        }}>
+                            <SearchBar />
+                        </Box>
+                    </Box>
+                    {/* <Box sx={{display:{xs: 'flex', md: 'none'}}}>
+                        <IconButton size='large' edge='start' color='inherit' onClick={openMenu}>
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu anchorEl={anchorNav} open={Boolean(anchorNav)} onClose={closeMenu} sx={{display:{xs: 'flex', md: 'none'}}}>
+                            <MenuList>
+                                {pages.map((page)=>(
+                                    <MenuItem
+                                    key={page.path}
+                                    component={Link}
+                                    to={page.path}
+                                    onClick={closeMenu}
+                                    >{page.label}
+                                    </MenuItem>
+                                ))}
+                            </MenuList>
+                        </Menu>
+                    </Box> */}
                 </Toolbar>
-
-
             </AppBar>
         
         </>
