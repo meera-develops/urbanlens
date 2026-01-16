@@ -37,6 +37,14 @@ function App() {
           exact path="/communityboard"
           element={<Community />} />
 
+          {/* <Route
+            path="/account"
+            element={
+              isLoggedIn ? <Account /> : <Navigate to="/login" />
+            }
+          /> */}
+          {/* can also display username and picture here */}
+
           <Route 
           exact path="/login" 
           element={<Login />} />

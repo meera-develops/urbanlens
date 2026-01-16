@@ -18,7 +18,7 @@ let theme = createTheme({
             main: '#2C2C2C'
         },
         background: {
-            main: '#fcfbf6'
+            default: '#fcfbf6'
         },
     },
     typography: {
@@ -47,6 +47,16 @@ let theme = createTheme({
         },
         forms: {
             fontFamily: 'Pontano Sans'
+        }
+    },
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    textTransform: 'none',
+                    fontFamily: '"Pontano Sans", sans-serif'
+                }
+            }
         }
     }
 });
