@@ -12,9 +12,9 @@ import { useEffect, useRef } from "react";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-//get slider changing images randomly, featuring three at one time perhaps 
-//get it to transform title to titlecase
+//get slider changing images randomly, featuring three at one time perhaps -- later 
 //clicking on the image will take it to the single city page for that city -- will be implemented as a later feature 
+//do I need to move the title? 
 
 function carouselFirst() {
 
