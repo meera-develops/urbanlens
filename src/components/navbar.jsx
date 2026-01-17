@@ -9,7 +9,7 @@ import SearchBar from './searchbar';
 
 //navbar will have to update to change from "log in" to "my account" upon successful login 
 
-//fix mobile issue opening the menu 
+//figure out how to display searchbar on mobile, if we want that
 
 const pages=[
     { label: 'Home', path: '/' },
@@ -31,12 +31,13 @@ function navbar() {
     return (
         <>
             <AppBar position="static">
-                <Toolbar sx={{justifyContent: 'center'}}>
+                <Toolbar sx={{justifyContent: 'space-between', alignItems: 'center', px: {xs: 3, lg: 10, xl: 32}}}>
                     <Box sx={{display:{xs: 'flex', md: 'none'}}}>
                         <IconButton size='large' edge='start' color='inherit' onClick={openMenu}>
-                            <MenuIcon />
+                            <MenuIcon
+                            />
                         </IconButton>
-                        <Menu anchorEl={anchorNav} open={Boolean(anchorNav)} onClose={closeMenu} sx={{display:{xs: 'flex', md: 'none'}}}>
+                        <Menu anchorEl={anchorNav} open={Boolean(anchorNav)} onClose={closeMenu} sx={{display:{xs: 'flex', md: 'none'}}} disableScrollLock>
                             <MenuList>
                                 {pages.map((page)=>(
                                     <MenuItem
@@ -44,6 +45,9 @@ function navbar() {
                                     component={Link}
                                     to={page.path}
                                     onClick={closeMenu}
+                                    sx={{
+                                        fontFamily: '"Pontano Sans", sans-serif',
+                                    }}
                                     >{page.label}
                                     </MenuItem>
                                 ))}
@@ -55,11 +59,21 @@ function navbar() {
                         // sx={{display: {xs: 'none', md:'flex'}}} 
                         aria-label='logo'
                     >
-                        <img 
+                        <Box
+                        component="img"
                         src={keyLogo}
-                        alt="Urban Lens Logo"
-                        style={{width: 170, height: 'auto', marginRight: 30}}
-                        />
+                        alt="Urban Lens Key-shaped Logo"
+                        sx={{
+                            width: {
+                                xs: 130,
+                                lg: 180,
+                                xl: 200
+                            },
+                            height: 'auto',
+                            marginRight: {
+                                md: 3,
+                            }
+                        }} />
                     </Box>
 
                     <Box sx={{
@@ -99,7 +113,7 @@ function navbar() {
                         <IconButton size='large' edge='start' color='inherit' onClick={openMenu}>
                             <MenuIcon />
                         </IconButton>
-                        <Menu anchorEl={anchorNav} open={Boolean(anchorNav)} onClose={closeMenu} sx={{display:{xs: 'flex', md: 'none'}}}>
+                        <Menu anchorEl={anchorNav} open={Boolean(anchorNav)} onClose={closeMenu} sx={{display:{xs: 'flex', md: 'none'}}} disableScrollLock>
                             <MenuList>
                                 {pages.map((page)=>(
                                     <MenuItem
