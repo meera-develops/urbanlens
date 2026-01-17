@@ -13,8 +13,10 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 //get slider changing images randomly, featuring three at one time perhaps -- later 
-//clicking on the image will take it to the single city page for that city -- will be implemented as a later feature 
+
+//clicking on the image will take it to the single city page for that city 
 //do I need to move the title? 
+//create peek of other items in the slideshow to the left and the right 
 
 function carouselFirst() {
 

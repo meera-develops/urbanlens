@@ -42,7 +42,7 @@ let theme = createTheme({
         },
         body3: {
             fontFamily: 'Libre Baskerville',
-            fontSize: '2rem'
+            fontSize: '1.7rem'
         },
         accessories: {
             fontFamily: 'Pontano Sans',

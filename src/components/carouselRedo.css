@@ -29,6 +29,26 @@
   background-color: #32582C;  /* your green color */
 }
 
+/* .content .footer {
+  display: block;
+  margin-top: 1rem;
+} */
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1500px) {
+  .content {
+    gap: 2rem;
+  }
+}
+
+.footer {
+  display: block;
+}
+
 
 /* .swiper {
     height: 100%;

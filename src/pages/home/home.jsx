@@ -6,13 +6,14 @@ import { useTheme, alpha, } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import CityCarousel from '../../components/carouselFirst.jsx';
 
-//next, work on carousel section and section below that 
 
 //create a card component to be used for this page and the gallery page
 //card component will accept a prop that tells it the city and the city information 
 //will have to create city information for now 
 
 //fix hero section on mobile 
+//make carousel disappear on mobile 
+//add peek of images to the left and right on carousel 
 
 
 function home() {
@@ -76,7 +77,7 @@ function home() {
               >
                 UrbanLens
               </Typography>
-              <Typography variant="body3" color="primary"
+              <Typography variant="h3" color="primary"
               sx={{
                 fontweight: 500,
                 width: '100%',
@@ -141,19 +142,23 @@ function home() {
           </Typography>
           {isDesktop && <CityCarousel />}
         </Box>
+
         <Box
         sx={{
-          mt: 20,
-
+          my: 14,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
         >
-          <Typography
+          <Button variant="contained" component={Link} to="/explore"
           sx={{
-            textAlign: 'center',
+            backgroundColor: theme.palette.primary.main,
+            color: theme.palette.accent.main,
           }}
           >
-            Carousel Ended!
-          </Typography>
+            Discover More Cities
+          </Button>
 
         </Box>
 
