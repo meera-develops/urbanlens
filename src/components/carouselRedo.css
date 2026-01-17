@@ -1,6 +1,7 @@
 .container {
     width: 40vw;
     height: 50vh;
+    position: relative;
 }
 
 
@@ -16,6 +17,18 @@
     height: 100%;
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
+
+.mySwiper .swiper-pagination-bullet {
+  background-color: rgba(50, 88, 44, 1);   /* change inactive color */
+  width: 10px;
+  height: 10px;
+}
+
+/* Active dot */
+.mySwiper .swiper-pagination-bullet-active {
+  background-color: #32582C;  /* your green color */
+}
+
 
 /* .swiper {
     height: 100%;

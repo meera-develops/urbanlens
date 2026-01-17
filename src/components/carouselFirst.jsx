@@ -1,18 +1,24 @@
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, IconButton } from "@mui/material";
 // import "./carouselFirst.css";
 import "./carouselRedo.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import content from "../components/citiesInfo.js";
+import { useTheme } from "@mui/material/styles";
 import { useEffect, useRef } from "react";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 //get slider changing images randomly, featuring three at one time perhaps 
 //get it to transform title to titlecase
 //clicking on the image will take it to the single city page for that city -- will be implemented as a later feature 
 
 function carouselFirst() {
+
+    const theme = useTheme();
 
     const swiperWrappedRef = useRef(null);
     function adjustMargin() {
@@ -36,18 +42,82 @@ function carouselFirst() {
         return () => window.removeEventListener("resize", adjustMargin);
     }, []);
 
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
+
     return (
         <>
         <main>
             <div className="container">
-                <Swiper modules={[Pagination ]}
+                <IconButton
+                ref={prevRef}
+                aria-label="Previous slide"
+                size="small"
+                sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '3%',
+                transform: 'translateY(-50%)',
+                zIndex: 10,
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+
+                backgroundColor: theme.palette.primary.main,
+                '&:hover': {
+                    backgroundColor: theme.palette.primary.main,
+                    transform: 'translateY(-50%) scale(1.1)',
+                    boxShadow: '0px 6px 12px rgba(0,0,0,0.4)',
+                },
+                }}
+                 >
+                    <ArrowBackIosNewIcon
+                    sx={{
+                        color: 'white'
+                    }} size="small"
+                    />
+                </IconButton>
+
+                <IconButton
+                ref={nextRef}
+                aria-label="Next slide"
+                size="small"
+
+                sx={{
+                position: 'absolute',
+                top: '50%',
+                right: '3%',
+                transform: 'translateY(-50%)',
+                zIndex: 10,
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                backgroundColor: theme.palette.primary.main,
+                '&:hover': {
+                    backgroundColor: theme.palette.primary.main,
+                    transform: 'translateY(-50%) scale(1.1)',
+                    boxShadow: '0px 6px 12px rgba(0,0,0,0.4)',
+                },
+                }}
+                >
+                    <ArrowForwardIosIcon 
+                    sx={{
+                        color: 'white'
+                    }} size="small"
+                    />
+                </IconButton>
+                <Swiper modules={[Pagination, Navigation ]}
                 grabCursor
                 initialSlide={0}
                 centeredSlides  
                 centeredSlidesBounds
                 slidesPerView="auto"
+                className="mySwiper"
                 pagination={{clickable : true}}
-                spaceBetween={10}
+                navigation={{
+                    prevEl: prevRef.current,
+                    nextEl: nextRef.current,
+                }}
+                onBeforeInit={(swiper) => {
+                    swiper.params.navigation.prevEl = prevRef.current;
+                    swiper.params.navigation.nextEl = nextRef.current;
+                }}
                 // breakpoints={{
                 //     320: { spaceBetween: 40},
                 //     650: { spaceBetween: 30},
@@ -56,6 +126,7 @@ function carouselFirst() {
                 // onSwiper={(swiper) =>{
                 //     swiperWrappedRef.current = swiper.wrapperEl;
                 // }}
+                spaceBetween={10}
                 >
                     {content.map((slide, index) => (
                         <SwiperSlide key={index}>
@@ -71,9 +142,9 @@ function carouselFirst() {
                                     <div className="category">
 
                                     </div>
-                                    <button>
+                                    {/* <button>
                                         <span className="label">More...</span>
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                         </SwiperSlide>
