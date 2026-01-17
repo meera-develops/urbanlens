@@ -2,15 +2,16 @@ import Typography from '@mui/material/Typography';
 import { Box, Stack, Button, } from '@mui/material'
 import heroImg from '../../assets/img/homeHero.jpg';
 import heroLogo from '../../assets/img/keyNoText.png';
-
-
-//fix text alignment on this page 
+import { useTheme, alpha } from '@mui/material/styles';
+// import theme from "../../theme.jsx";
 
 //create a card component to be used for this page and the gallery page
 //card component will accept a prop that tells it the city and the city information 
 //will have to create city information for now 
 
 function home() {
+
+  const theme = useTheme();
 
   return (
     <>
@@ -77,13 +78,25 @@ function home() {
               >
                 Compare. Decide. Live better.
               </Typography>
+
+              <Button variant="contained" color="secondary" size="large"
+              sx={{
+                marginTop: 5,
+                borderColor: theme.palette.primary.main,
+                border: '2px solid',
+                backgroundColor: alpha(theme.palette.secondary.main,0.5),
+                color: theme.palette.primary.main,
+                boxShadow: 'none',
+                '&:hover': {
+                  boxShadow: theme.shadows[3],
+                },
+              }}
+              >
+                Explore Areas
+              </Button>
             </Stack>
           </Box>
-          <Box>
-              <Button>
-
-              </Button>
-          </Box>
+         
 
         </Box>
     </Box>
