@@ -1,19 +1,10 @@
-import { Typography, Box } from "@mui/material";
+import content from "../components/citiesInfo.js";
 
-function carousel() {
+
+function carousel () {
     return (
         <>
-        <Box
-        sx={{
-            mt: 5,
-        }}
-        >
-
-            <Typography variant="body1">
-                this will be the carousel!!!
-            </Typography>
-        </Box>
-        
+        <h1>Let's see if this connected</h1>
         </>
     )
 } export default carousel;

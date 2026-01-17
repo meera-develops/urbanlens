@@ -1,0 +1,174 @@
+:root {
+    --gap: 25px;
+    --primary-clr: #fff;
+    --accent-clr: red;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    background: white;
+    font-family: 'Libre Baskerville', sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    width: 80%;
+}
+
+.swiper {
+    width: 80%;
+    padding: 60px;
+}
+
+.swiper-slide {
+    position: relative;
+    width: 300px;
+    height: 500px;
+    background: yellow;
+    box-shadow: 1px 22px 44px rgba(0,0,0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 1s;
+    user-select: none;  
+}
+
+.swiper-slide-active {
+    width: 600px;
+    transition: width 1s ease-in-out;
+    border: 3px solid white;
+
+}
+
+ .swiper-slide img {
+    /* position: absolute;
+    inset: 0; */
+    filter: grayscale(90%)
+}
+
+.swiper-slide-active img {
+    filter: grayscale(0%);
+}
+
+/* Title */
+
+.title {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 25px 25px 30px;
+} 
+
+.title h1{
+    font-size: 2rem;
+    font-family: "Libre Baskserville";
+    font-weight: 700;
+    color: blue;
+    opacity: 1;
+    transition: 0.8s ease;
+    transition-delay: 1s;
+}
+
+.swiper-slide-active .title h1{
+    opacity: 0;
+    transition-delay: -200ms;
+}
+
+/* Content */
+
+.content {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 25px var(--gap) 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    background: rgba (0,0,0, 0.5);
+    background-image: linear-gradient(
+        180deg,
+        transparent,
+        transparent,
+        rgba(0,0,0,0.4),
+        rgba(0,0,0,0.7)
+    );
+    color: pink;
+    opacity: 0;
+    z-index: 1;
+}
+
+.swiper-slide-active .content {
+    opacity: 1;
+    transition: 0.8s;
+    transition-delay: 0.5s;
+}
+
+/* Text Box */
+
+.text-box {
+    background-color: orange;
+    border-left: 4px solid green;
+    padding-left: 10px;
+    margin-bottom: 8px;
+    opacity: 0;
+}
+
+.swiper-slide.active .text-box {
+    opacity: 1;
+    transition: 0.5s;
+    transition-delay: 1s;
+}
+
+.text-box p {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.swiper-slide-active .text-box p {
+    transform: translateY(0);
+    opacity: 1;
+    transition: 1.5s ease;
+    transition-delay: 1s;
+}
+
+
+
+/* .container {
+    width: 80vh;
+    height: 50vh;
+} */
+
+
+/* .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+
+.swiper {
+    height: 100%;
+}
+

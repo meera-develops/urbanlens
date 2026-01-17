@@ -4,7 +4,7 @@ import heroImg from '../../assets/img/homeHero.jpg';
 import heroLogo from '../../assets/img/keyNoText.png';
 import { useTheme, alpha, } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-import CityCarousel from '../../components/carousel.jsx';
+import CityCarousel from '../../components/carouselFirst.jsx';
 
 //next, work on carousel section and section below that 
 
@@ -133,12 +133,28 @@ function home() {
           </Typography>
           <Typography variant='body1' color="text"
           sx={{
-            textAlign: 'center'
+            textAlign: 'center',
+            mb: 4,
           }}
           >
             Don’t know where to start? Use our Explore Areas page to get started!
           </Typography>
           {isDesktop && <CityCarousel />}
+        </Box>
+        <Box
+        sx={{
+          mt: 20,
+
+        }}
+        >
+          <Typography
+          sx={{
+            textAlign: 'center',
+          }}
+          >
+            Carousel Ended!
+          </Typography>
+
         </Box>
 
 
