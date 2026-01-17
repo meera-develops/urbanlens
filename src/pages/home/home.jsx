@@ -1,17 +1,24 @@
 import Typography from '@mui/material/Typography';
-import { Box, Stack, Button, } from '@mui/material'
+import { Box, Stack, Button, useMediaQuery } from '@mui/material'
 import heroImg from '../../assets/img/homeHero.jpg';
 import heroLogo from '../../assets/img/keyNoText.png';
-import { useTheme, alpha } from '@mui/material/styles';
-// import theme from "../../theme.jsx";
+import { useTheme, alpha, } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+import CityCarousel from '../../components/carousel.jsx';
+
+//next, work on carousel section and section below that 
 
 //create a card component to be used for this page and the gallery page
 //card component will accept a prop that tells it the city and the city information 
 //will have to create city information for now 
 
+//fix hero section on mobile 
+
+
 function home() {
 
-  const theme = useTheme();
+  const theme = useTheme(); //callback hook for theme
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <>
@@ -79,7 +86,7 @@ function home() {
                 Compare. Decide. Live better.
               </Typography>
 
-              <Button variant="contained" color="secondary" size="large"
+              <Button variant="contained" color="secondary" size="large" component={Link} to="/explore"
               sx={{
                 marginTop: 5,
                 borderColor: theme.palette.primary.main,
@@ -96,9 +103,45 @@ function home() {
               </Button>
             </Stack>
           </Box>
-         
-
         </Box>
+
+        <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          mt: 5,
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}
+        >
+          <Typography variant="h2" color="primary">
+            Find Your Dream City
+          </Typography>
+          <Typography variant='body1' color="text"
+          sx={{
+            textAlign: 'center'
+          }}
+          >
+            We know that moving is a big decision and we’re here to make it easier. 
+          </Typography>
+          <Typography variant='body1' color="text"
+          sx={{
+            textAlign: 'center'
+          }}
+          >
+            With UrbanLens, find all the information you need to feel confident in your decision. 
+          </Typography>
+          <Typography variant='body1' color="text"
+          sx={{
+            textAlign: 'center'
+          }}
+          >
+            Don’t know where to start? Use our Explore Areas page to get started!
+          </Typography>
+          {isDesktop && <CityCarousel />}
+        </Box>
+
+
     </Box>
       
     </>
