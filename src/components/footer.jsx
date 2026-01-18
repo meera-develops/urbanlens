@@ -32,11 +32,12 @@ function Footer () {
             backgroundColor: theme.palette.primary.main,
             color: theme.palette.background.default,
             px: { xs: 3, md: 8 },
-            py: 0,
+            pt: 0,
+            pb: { xs: 2, md: 0}, 
             mt: { xs: 3, lg: 5, },
          }}
         >
-            <Grid container spacing={4} alignItems="center" textAlign={{xs: 'center', md: 'left'}}>
+            <Grid container spacing={2} alignItems="center" textAlign={{xs: 'center', md: 'left'}}>
                 <Grid size={{ xs: 12, md: 6, lg: 3}}>
                     <Box
                         sx={{
