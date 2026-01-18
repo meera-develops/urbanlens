@@ -392,9 +392,14 @@ function home() {
         >
           <Grid container spacing={{
             xs: 4, lg: 10
-          }}>
+          }}
+          sx={{
+            px: { xs: 2, md: 0, },
+            pb: 5,
+          }}
+          >
             {myCities.map((city) => (
-              <Grid key={city.id}>
+              <Grid size={{ xs: 12, md: 6 }} key={city.id}>
                 <CityCard
                   title={city.title}
                   image={city.img}

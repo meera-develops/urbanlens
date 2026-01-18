@@ -23,9 +23,12 @@ function cityCard({ title, subtitle, image }) {
         <>
         <Card
         sx={{
-            width: 340,
+            width: "100%",
+            maxWidth: 340,
+            mx: 'auto',
             borderRadius: 2,
             overflow: "hidden",
+            boxSizing: 'border-box',
         }}
         >
       {/* Image */}
@@ -34,13 +37,18 @@ function cityCard({ title, subtitle, image }) {
         height="180"
         image={image}
         alt={title}
+        sx={{ objectFit: 'cover',
+            
+        }}
       />
 
-      {/* Green footer area */}
+      {/* Green body area */}
       <Box
         sx={{
           backgroundColor: theme.palette.primary.main,
           color: "white",
+          //px: 2,   
+          py: 1,
         }}
       >
         <CardContent sx={{ pb: 1 }}>
