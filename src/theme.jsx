@@ -24,7 +24,7 @@ let theme = createTheme({
     typography: {
         fontFamily: " 'Libre Baskerville', 'Pontano Sans', sans-serif",
         h1: {
-            fontFamily: 'Libre Baskerville'
+            fontFamily: 'Libre Baskerville',
         },
         h2: {
             fontFamily: 'Libre BaskerVille',
@@ -57,11 +57,13 @@ let theme = createTheme({
             styleOverrides: {
                 root: {
                     textTransform: 'none',
-                    fontFamily: '"Pontano Sans", sans-serif'
+                    fontFamily: '"Pontano Sans", sans-serif',
                 }
             }
         }
     }
 });
+
+theme = responsiveFontSizes(theme);
 
 export default theme;

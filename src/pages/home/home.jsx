@@ -6,20 +6,19 @@ import { useTheme, alpha, } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import CityCarousel from '../../components/carouselFirst.jsx';
 
+//fix hero section on mobile 
+//make carousel disappear on mobile 
+
+//start working on next section -- side by side 
 
 //create a card component to be used for this page and the gallery page
 //card component will accept a prop that tells it the city and the city information 
-//will have to create city information for now 
-
-//fix hero section on mobile 
-//make carousel disappear on mobile 
-//add peek of images to the left and right on carousel 
 
 
 function home() {
 
   const theme = useTheme(); //callback hook for theme
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'));
 
   return (
     <>
@@ -28,15 +27,15 @@ function home() {
           sx={{
             backgroundImage: `
               linear-gradient(
-              rgba(255, 255, 255, 0.1) 0%,
-              rgba(255, 255, 255, 0.6) 50%,
+              rgba(255, 255, 255, 0.1) 5%,
+              rgba(255, 255, 255, 0.6) 40%,
               rgba(255, 255, 255, 0.9) 100%
               ),
             url(${heroImg})`, 
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            height: '55vh', 
+            height: {xs: '70vh', md: '55vh'}, 
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -46,7 +45,14 @@ function home() {
           <Box
           sx={{
             display:'flex',
-            flexDirection: 'row',
+            flexDirection: { xs: 'column', md: 'row'},
+            px: { xs: 2, md: 0},
+            boxSizing: 'border-box',
+            gap: 2,
+            // alignItems: 'center',
+            // textAlign: { xs: 'center', md: 'left'},
+            // width: '100%',
+            // maxWidth: '1200px',
             
           }}
           >
@@ -55,7 +61,7 @@ function home() {
             src={heroLogo}
             alt="Urban Lens Key-shaped Logo"
             sx={{
-              width: 'auto',
+              width: { xs: '70%', sm: '40%', md: 'auto' },
               height: '100%',
               mr: {
                 lg: 3,
@@ -64,24 +70,28 @@ function home() {
             >
 
             </Box>
-            <Stack alignItems="flex-start"
+            <Stack alignItems={{ xs: 'center', md: 'flex-start'}}
             sx={{
-              width: 'fit-content',
-            }}
+              width: { xs: '100%', md: 'auto' },            
+              }}
             >
               <Typography variant="h1" color="primary"
               sx={{
                 fontWeight: 500,
                 marginLeft: 0,
+                width: { xs: '100%', md: 'auto' },
+                textAlign: { xs: 'center', md: 'left' },
               }}
               >
                 UrbanLens
               </Typography>
               <Typography variant="h3" color="primary"
               sx={{
-                fontweight: 500,
-                width: '100%',
+                fontWeight: 500,
+                width: { xs: '100%', md: 'auto' },
                 letterSpacing: '0.07em',
+                textAlign: { xs: 'center', md: 'left' },
+
               }}
               >
                 Compare. Decide. Live better.
@@ -89,7 +99,7 @@ function home() {
 
               <Button variant="contained" color="secondary" size="large" component={Link} to="/explore"
               sx={{
-                marginTop: 5,
+                marginTop: { xs: 3, md: 5},
                 borderColor: theme.palette.primary.main,
                 border: '2px solid',
                 backgroundColor: alpha(theme.palette.secondary.main,0.5),
@@ -112,7 +122,8 @@ function home() {
           justifyContent: 'center',
           mt: 5,
           flexDirection: 'column',
-          alignItems: 'center'
+          alignItems: { xs: 'left', lg: 'center'},
+          ml: {xs: 1, lg: 0 }
         }}
         >
           <Typography variant="h2" color="primary">
@@ -120,21 +131,22 @@ function home() {
           </Typography>
           <Typography variant='body1' color="text"
           sx={{
-            textAlign: 'center'
+            textAlign: {xs: 'left', lg: 'center' },
+            mt: { xs: 2, lg: 2, }
           }}
           >
             We know that moving is a big decision and we’re here to make it easier. 
           </Typography>
           <Typography variant='body1' color="text"
           sx={{
-            textAlign: 'center'
+            textAlign: {xs: 'left', lg: 'center' },
           }}
           >
             With UrbanLens, find all the information you need to feel confident in your decision. 
           </Typography>
           <Typography variant='body1' color="text"
           sx={{
-            textAlign: 'center',
+            textAlign: {xs: 'left', lg: 'center' },
             mb: 4,
           }}
           >
@@ -145,13 +157,13 @@ function home() {
 
         <Box
         sx={{
-          my: 14,
+          my: {xs: 2, sm: 4, lg: 13, xl: 14, },
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
         }}
         >
-          <Button variant="contained" component={Link} to="/explore"
+          <Button variant="contained" component={Link} size="large" to="/explore"
           sx={{
             backgroundColor: theme.palette.primary.main,
             color: theme.palette.accent.main,
