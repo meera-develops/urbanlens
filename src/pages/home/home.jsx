@@ -5,12 +5,15 @@ import heroLogo from "../../assets/img/keyNoText.png";
 import { useTheme, alpha } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import CityCarousel from "../../components/carousel.jsx";
-import CityCard from "../../components/cityCard.jsx";
 import web from "../../assets/img/peopleWeb.png";
+import CityCard from "../../components/cityCard.jsx";
+import Cities from "../../components/citiesInfo.js";
+
 
 
 //create a card component to be used for this page and the gallery page
 //card component will accept a prop that tells it the city and the city information
+
 //then build the footer 
 //then the explore areas
 //then single city page 
@@ -20,6 +23,8 @@ import web from "../../assets/img/peopleWeb.png";
 function home() {
   const theme = useTheme(); //callback hook for theme
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+
+  const myCities = Cities.slice(5, 7);
 
   return (
     <>
@@ -380,17 +385,27 @@ function home() {
         sx={{
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'center',
             flexDirection: { xs: 'column', md: 'row'},
+            mt: 5,
           }}
         >
-          <CityCard />
+          <Grid container spacing={{
+            xs: 4, lg: 10
+          }}>
+            {myCities.map((city) => (
+              <Grid key={city.id}>
+                <CityCard
+                  title={city.title}
+                  image={city.img}
+                  subtitle={city.subtitle}
+                />
+              </Grid>
+            ))}
+          </Grid>
         </Box>
 
-
        </Box>
-
-
-
     </>
   );
 }
