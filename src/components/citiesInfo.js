@@ -3,6 +3,8 @@ import boston from "../assets/img/cityImages/boston.jpg";
 import baltimore from "../assets/img/cityImages/baltimore.jpg";
 import leesburg from "../assets/img/cityImages/leesburg.jpg";
 import frederick from "../assets/img/cityImages/frederick.jpg";
+import sanfrancisco from "../assets/img/cityImages/sanfrancisco.jpg";
+import newyork from "../assets/img/cityImages/newyork.jpg";
 
 const citiesInfo = [
     {
@@ -33,7 +35,21 @@ const citiesInfo = [
         id: "5",
         img: frederick,
         title: "Frederick, MD",
-        description: "Visit Frederick today!!! "
+        description: "Visit Frederick today!!! ",
+    },
+    {
+        id: "6",
+        img: sanfrancisco,
+        title: "San Francisco, CA",
+        description: "Visit the Golden Gate Bridge",
+        subtitle: "Vibrant coastal city known for its innovation, diverse culture, steep hills, and iconic landmarks like the Golden Gate Bridge."
+    },
+    {
+        id: "7",
+        img: newyork,
+        title: "New York, NY",
+        description: "lorem ipsum, lorem ipsum",
+        subtitle: "Global metropolis known for its energy, diversity, and iconic skyline, often called “the city that never sleeps.”"
     }
 ];
 

@@ -38,7 +38,8 @@ let theme = createTheme({
             fontFamily: 'Pontano Sans'
         },
         body2: {
-            fontFamily: 'Pontano Sans'
+            fontFamily: 'Pontano Sans',
+            fontSize: '1rem',
         },
         body3: {
             fontFamily: 'Libre Baskerville',

@@ -1,16 +1,21 @@
 import Typography from "@mui/material/Typography";
-import { Box, Stack, Button, useMediaQuery } from "@mui/material";
+import { Box, Stack, Button, useMediaQuery, Grid } from "@mui/material";
 import heroImg from "../../assets/img/homeHero.jpg";
 import heroLogo from "../../assets/img/keyNoText.png";
 import { useTheme, alpha } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import CityCarousel from "../../components/carousel.jsx";
+import CityCard from "../../components/cityCard.jsx";
 import web from "../../assets/img/peopleWeb.png";
 
-//start working on next section -- side by side
 
 //create a card component to be used for this page and the gallery page
 //card component will accept a prop that tells it the city and the city information
+//then build the footer 
+//then the explore areas
+//then single city page 
+//then sign up or compare/contrast
+//community board last i guess 
 
 function home() {
   const theme = useTheme(); //callback hook for theme
@@ -168,7 +173,9 @@ function home() {
 
         <Box
           sx={{
-            my: { xs: 2, sm: 4, lg: 13, xl: 14 },
+            mt: { xs: 2, lg: 15, xl: 30},
+            mb: { xs: 2, lg: 5, xl: 5},
+            // my: { xs: 2, sm: 4, lg: 13, xl: 15 },
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -233,7 +240,7 @@ function home() {
             >
               Discover what life in your next city is really like. Connect with locals, ask questions, and share your own experiences on our community board. Whether you’re researching your first move or comparing neighborhoods, UrbanLens makes it easy to learn from real people who’ve been there.
             </Typography>
-            <Button color="accent" variant="contained"
+            <Button color="accent" variant="contained" component={Link} to="/login"
               sx={{
                 fontWeight: 600,
                 mt: {md: 5,},
@@ -258,7 +265,125 @@ function home() {
       </Box>
 
       <Box color="Background">
-        <Typography color="text">More elements to go here</Typography>
+        <Grid container spacing={3}
+          sx={{
+            py: { xs: 1, lg: 5, },
+            px: { xs: 1, lg: 14, xl: 44, },
+          }}  
+        >
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Box
+            sx={{
+              backgroundColor: '#8A9785',
+              borderRadius: 2,
+              px: {xs: 2, lg: 2, },
+              py: {xs: 2, lg: 1, }
+            }}
+            >
+              <Typography variant="h2" color="text">
+                Top 10 Safest Cities in 2026
+              </Typography>
+              <Box
+              component="ul"
+              sx={{
+                padding: '0',
+                listStyle: 'none',
+                color: theme.palette.text.main
+              }}
+              >
+                <Box component="li">City 1</Box>
+                <Box component="li">City 2</Box>
+                <Box component="li">City 3</Box>
+                <Box component="li">City 4</Box>
+                <Box component="li">City 5</Box>
+                <Box component="li">City 6</Box>
+
+              </Box>
+            </Box>
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 6 }}
+            sx={{
+            }}
+          >
+              <Typography variant="h2" color="text">
+                Trustworthy Information
+              </Typography>
+              <Typography variant="body2" color="text">
+                We collect information and gather it into one place for your convenience.
+              </Typography>
+              <Typography variant="body2" color="text">
+                Here is a list of our sources:
+              </Typography>
+              <Box
+              component="ul"
+              sx={{
+                padding: '0',
+                listStyle: 'none',
+                color: theme.palette.primary.main
+              }}
+              >
+                {[
+                'U.S. Census Bureau (ACS): Housing, Income, and Commute Statistics',
+                'Bureau of Labor Statistics (BLS): Employment and Wage Data',
+                'FBI Crime Data Explorer: Violent and Property Crime Rates',
+                'NOAA NCEI: Weather and Climate Information',
+                'Trust for Public Land: Park and Green Space Indices',
+              ].map((text) => (
+                <Box key={text} component="li">
+                  <Box
+                    component="a"
+                    href="https://www.census.gov/en.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{
+                      color: 'inherit',          // 👈 use parent color
+                      textDecoration: 'underline',
+                      cursor: 'pointer',
+                      '&:visited': {
+                        color: 'inherit',        // 👈 prevent purple
+                      },
+                      '&:hover': {
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    {text}
+                  </Box>
+                </Box>
+              ))}
+              </Box>
+
+          </Grid>
+        </Grid>
+       </Box>
+
+       <Box color="Background">
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column'
+          }}
+        >
+          <Typography variant="h2" color="text" fontWeight="bold">
+            Cities with Fastest Job Growth in 2024 - 2025
+          </Typography>
+          <Typography variant="body2" color="primary">
+            U.S. cities leading the way in employment and economic expansion.
+          </Typography>
+        </Box>
+
+        <Box
+        sx={{
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: { xs: 'column', md: 'row'},
+          }}
+        >
+          <CityCard />
+        </Box>
+
 
        </Box>
 

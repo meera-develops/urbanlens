@@ -29,10 +29,7 @@
   background-color: #32582C;  /* your green color */
 }
 
-/* .content .footer {
-  display: block;
-  margin-top: 1rem;
-} */
+
 
 .content {
   display: flex;
@@ -49,7 +46,11 @@
   display: block;
 }
 
+/* .content .footer {
+  display: block;
+  margin-top: 1rem;
+} */
 
 /* .swiper {
-    height: 100%;
+    padding-bottom: 40px;
 } */
