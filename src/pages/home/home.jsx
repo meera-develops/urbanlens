@@ -5,6 +5,7 @@ import heroLogo from "../../assets/img/keyNoText.png";
 import { useTheme, alpha } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import CityCarousel from "../../components/carousel.jsx";
+import web from "../../assets/img/peopleWeb.png";
 
 //start working on next section -- side by side
 
@@ -187,6 +188,82 @@ function home() {
           </Button>
         </Box>
       </Box>
+      
+      <Box backgroundColor="primary.main"
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        p: 3,
+      }}
+      >
+        <Stack
+          direction={{ xs: 'column-reverse', md: 'row'}}
+          spacing={{xs: 6, md: 3 }}
+          alignItems={{ xs: 'center', md: 'center', }}
+          sx={{
+            maxWidth: 1200,
+            width: '100%',
+            // justifyContent: { xl: 'space-between'},
+            px: { xs: 2, md: 10, xl: 0 },
+            mt: { xs: 2, md: 0 }
+          }}
+        >
+          <Box sx={{ flex: { xs: '1 1 100%', md: '0 1 600px'}, textAlign: { xs: 'center', md: 'left',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            textAlign: { xs: 'center', md: 'left' },
+           } 
+        
+        
+        }}>
+            <Typography variant="h2" gutterBottom 
+              sx={{
+                color: theme.palette.background.default,
+                fontWeight: 600,
+              }}
+            >
+              Join the Community
+            </Typography>
+            <Typography variant="body3"
+            sx={{
+              color: theme.palette.background.default
+            }}
+            >
+              Discover what life in your next city is really like. Connect with locals, ask questions, and share your own experiences on our community board. Whether you’re researching your first move or comparing neighborhoods, UrbanLens makes it easy to learn from real people who’ve been there.
+            </Typography>
+            <Button color="accent" variant="contained"
+              sx={{
+                fontWeight: 600,
+                mt: {md: 5,},
+                fontFamily: "'Libre Baskerville'",
+                fontSize: '1rem'
+              }}
+            >
+              Sign Up to Start Connecting
+            </Button>
+          </Box>
+          <Box sx={{ flex: { xs: '1 1 100%', md: '0 1 600px'}, textAlign: 'center'  }}>
+            <Box
+              component="img"
+              src={web}
+              alt="3 people icons connected in a web representing community"
+              sx={{ width: '60%', height: 'auto', }}
+            >
+            </Box>
+          </Box>
+
+        </Stack>
+      </Box>
+
+      <Box color="Background">
+        <Typography color="text">More elements to go here</Typography>
+
+       </Box>
+
+
+
     </>
   );
 }
