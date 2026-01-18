@@ -24,12 +24,20 @@
   height: 10px;
 }
 
-/* Active dot */
-.mySwiper .swiper-pagination-bullet-active {
-  background-color: #32582C;  /* your green color */
+.text-box {
+  margin-bottom: 3rem;
 }
 
+@media (min-width: 1024px) {
+  .text-box {
+    margin-bottom: 1rem;
+  }
+}
 
+/* Active dot */
+.mySwiper .swiper-pagination-bullet-active {
+  background-color: #32582C;  
+}
 
 .content {
   display: flex;
