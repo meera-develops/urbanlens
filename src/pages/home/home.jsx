@@ -173,7 +173,7 @@ function home() {
 
         <Box
           sx={{
-            mt: { xs: 2, lg: 15, xl: 30},
+            mt: { xs: 2, lg: 20, },
             mb: { xs: 2, lg: 5, xl: 5},
             // my: { xs: 2, sm: 4, lg: 13, xl: 15 },
             display: "flex",

@@ -43,7 +43,7 @@ let theme = createTheme({
         },
         body3: {
             fontFamily: 'Libre Baskerville',
-            fontSize: '1.7rem'
+            fontSize: '1.5rem'
         },
         accessories: {
             fontFamily: 'Pontano Sans',
