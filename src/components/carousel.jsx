@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import content from "./citiesInfo.js";
 import { useTheme } from "@mui/material/styles";
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
@@ -44,6 +44,17 @@ function carousel() {
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+
+  function getRandomSlides(arr, count) {
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    const randomSlides = getRandomSlides(content, 4); // pick 3 random slides
+    setSlides(randomSlides);
+  }, []);
 
   return (
     <>
@@ -130,7 +141,7 @@ function carousel() {
             // }}
             spaceBetween={10}
           >
-            {content.map((slide, index) => (
+            {slides.map((slide, index) => (
               <SwiperSlide key={index}>
                 <img src={slide.img} alt={slide.title} />
                 <div className="title">
