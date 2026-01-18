@@ -1,0 +1,112 @@
+import { Box, Grid, Typography, Link, useTheme } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
+import { styled } from "@mui/material/styles";
+import logo from '../assets/img/logo.png';
+
+//figure out links issue 
+
+//then the explore areas and filtering sidebar
+//then single city page 
+//then sign up or compare/contrast
+//community board last i guess 
+
+function Footer () {
+    const theme = useTheme();
+    // const FooterLink = styled(RouterLink)(({ theme }) => ({
+    //     display: 'block',
+    //     marginBottom: theme.spacing(1),
+    //     fontSize: '1rem',
+    //     color: theme.palette.background.default,
+    //     textDecoration: 'none',
+    //     cursor: 'pointer',
+    //     '&:hover': {
+    //         opacity: 0.8,
+    //     },
+    // }));
+
+    return (
+        <>
+        <Box
+         component="footer"
+         sx={{
+            backgroundColor: theme.palette.primary.main,
+            color: theme.palette.background.default,
+            px: { xs: 3, md: 8 },
+            py: 0,
+            mt: { xs: 3, lg: 5, },
+         }}
+        >
+            <Grid container spacing={4} alignItems="center" textAlign={{xs: 'center', md: 'left'}}>
+                <Grid size={{ xs: 12, md: 6, lg: 3}}>
+                    <Box
+                        sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: { xs: 'center', md: 'center' },
+                        gap: 2,
+                        }}
+                    >
+                    <Box
+                    component="img"
+                    src={logo}
+                    alt="Urban Lens Key-shaped Logo"
+                    sx={{ width: '70%', height: 'auto' }}
+                    />  
+                    </Box>
+                </Grid>
+
+                <Grid size={{ xs: 12, md: 6, lg: 7}}
+                sx={{
+                    mt: {xs: 1, lg: 3,}
+                }}
+                >
+                    <Grid container spacing={1} justifyContent="center">
+                        <Grid size={{ xs: 12, lg: 4}}>
+                            <FooterLink to="/explore">Explore Areas</FooterLink>
+                            <FooterLink to="/communityboard">Community Board</FooterLink>
+                        </Grid>
+                        <Grid size={{ xs: 12, lg: 4}}>
+                            <FooterLink to="/signup">Sign up</FooterLink>
+                            <FooterLink to="/login">Log In</FooterLink>
+                        </Grid>
+                        <Grid size={{ xs: 12, lg: 4}}>
+                            <Typography variant="body2">
+                                Phone: (000) XXX-XXXX
+                            </Typography>
+                            <Typography variant="body2">
+                                Email: access@xxx.com
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                
+
+            </Grid>
+        </Box>
+        
+        </>
+    )
+} export default Footer;
+
+function FooterLink({ to, children }) {
+  return (
+    <Link
+      component={RouterLink}
+      to={to}
+      underline="none"
+      color="inherit"
+      sx={{
+        display: 'block',
+        mb: 1,
+        fontSize: '1rem',
+        cursor: 'pointer',
+        '&:hover': {
+          opacity: 0.8,
+        },
+      }}
+    >
+      {children}
+    </Link>
+  );
+}

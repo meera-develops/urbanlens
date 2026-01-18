@@ -10,16 +10,6 @@ import CityCard from "../../components/cityCard.jsx";
 import Cities from "../../components/citiesInfo.js";
 
 
-
-//create a card component to be used for this page and the gallery page
-//card component will accept a prop that tells it the city and the city information
-
-//then build the footer 
-//then the explore areas
-//then single city page 
-//then sign up or compare/contrast
-//community board last i guess 
-
 function home() {
   const theme = useTheme(); //callback hook for theme
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
@@ -395,7 +385,7 @@ function home() {
           }}
           sx={{
             px: { xs: 2, md: 0, },
-            pb: 5,
+            // pb: 5,
           }}
           >
             {myCities.map((city) => (

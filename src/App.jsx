@@ -6,6 +6,8 @@ import Explore from "./pages/explore/explore";
 import Community from './pages/community/community';
 import Login from "./pages/login/login";
 import Navbar from "./components/navbar";
+import Footer from "./components/footer";
+
 
 
 //build navbar next 
@@ -50,6 +52,7 @@ function App() {
           element={<Login />} />
 
         </Routes>
+        <Footer />
       </Router>
       
     </>
