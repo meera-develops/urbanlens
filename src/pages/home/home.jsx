@@ -243,7 +243,7 @@ function home() {
             <Button color="accent" variant="contained" component={Link} to="/login"
               sx={{
                 fontWeight: 600,
-                mt: {md: 5,},
+                mt: {xs: 3, md: 5,},
                 fontFamily: "'Libre Baskerville'",
                 fontSize: '1rem'
               }}
@@ -277,7 +277,8 @@ function home() {
               backgroundColor: '#8A9785',
               borderRadius: 2,
               px: {xs: 2, lg: 2, },
-              py: {xs: 2, lg: 1, }
+              py: {xs: 2, lg: 1, },
+              mt: {xs: 1, md: 0}
             }}
             >
               <Typography variant="h2" color="text">
@@ -363,7 +364,8 @@ function home() {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            flexDirection: 'column'
+            flexDirection: 'column',
+            gap: { xs: 2, md: 1},
           }}
         >
           <Typography variant="h2" color="text" fontWeight="bold">
