@@ -38,7 +38,7 @@ function App() {
             element={<Explore />} />
 
             <Route 
-            exact path="/communityboard"
+            exact path="/communityboard/:citySlug"
             element={<Community />} />
 
             {/* <Route

@@ -394,6 +394,7 @@ function home() {
                   title={city.title}
                   image={city.img}
                   subtitle={city.subtitle}
+                  slug={city.slug}
                 />
               </Grid>
             ))}

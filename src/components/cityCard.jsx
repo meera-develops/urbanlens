@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 
 //make chat icon take you to community board upon click 
 
-function cityCard({ title, subtitle, image }) {
+function cityCard({ title, subtitle, image, slug }) {
 
     const [bookmarked, setBookmarked] = useState(false);
     const [liked, setLiked] = useState(false);
@@ -82,18 +82,17 @@ function cityCard({ title, subtitle, image }) {
             pt: 0,
           }}
         >
-          {/* <IconButton size="small" sx={{ color: theme.palette.accent.main }}>
-            <BookmarkBorderIcon />
-          </IconButton> */}
           <IconButton onClick={() => setBookmarked(!bookmarked)}>
             {bookmarked ? <BookmarkIcon sx={{color: theme.palette.accent.main}} /> : <BookmarkBorderIcon sx={{color: theme.palette.accent.main}} />}
           </IconButton>
           <IconButton onClick={() => setLiked(!liked)} sx={{ color: theme.palette.accent.main }}>
             {liked ? <FavoriteIcon /> : <FavoriteBorderIcon /> }
           </IconButton>
-          <IconButton component={Link} to="/communityboard" size="small" sx={{ color: theme.palette.accent.main }}>
+
+          <IconButton component={Link} to={`/communityboard/${slug}`} size="small" sx={{ color: theme.palette.accent.main }}>
             <ChatBubbleOutlineOutlinedIcon />
           </IconButton>
+
           <IconButton onClick={() => setCompared(!compare)} sx={{ color: theme.palette.accent.main }}>
             {compare ? <IoMdGitCompare /> : <IoIosGitCompare /> }
           </IconButton>
