@@ -50,6 +50,7 @@ const citiesInfo = [
         title: "New York, NY",
         description: "lorem ipsum, lorem ipsum",
         subtitle: "Global metropolis known for its energy, diversity, and iconic skyline, often called “the city that never sleeps.”"
+        
     }
 ];
 
