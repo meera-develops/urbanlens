@@ -8,6 +8,8 @@ import Login from "./pages/login/login";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Signup from "./pages/login/signup";
+import RandomRedirect from "./components/randomCommunityBoard";
+import CitiesInfo from "./components/citiesInfo.js";
 
 
 
@@ -18,13 +20,6 @@ function App() {
   return (
     <>
       <Router>
-        {/* <nav>
-          <Link to="/">Home</Link> |{" "}
-          <Link to="/explore">Explore</Link> |{" "}
-          <Link to="/communityboard">Community</Link> |{" "}
-          <Link to="/login">Login</Link>
-          
-        </nav> */}
         <Navbar />
         <main className="bodyContent">
           <Routes>
@@ -36,6 +31,10 @@ function App() {
             <Route 
             exact path="/explore"
             element={<Explore />} />
+
+            <Route
+            exact path="/communityboard"
+            element={<RandomRedirect CitiesInfo={CitiesInfo} />} />
 
             <Route 
             exact path="/communityboard/:citySlug"
