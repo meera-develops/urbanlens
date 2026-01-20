@@ -11,9 +11,8 @@ import Signup from "./pages/login/signup";
 import RandomRedirect from "./components/randomCommunityBoard";
 import CitiesInfo from "./components/citiesInfo.js";
 
-
-
-//build navbar next 
+//create single city page and add it as a route 
+//just go down to details 
 
 function App() {
 

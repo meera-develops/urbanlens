@@ -19,7 +19,9 @@ import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutline
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-//make chat icon take you to community board upon click 
+//when user clicks on the card, or the bookmark, or the heart, all clicks should take them to the single city page for that city 
+
+//and change the useState for a state that will persist for user logged in status and beyond refreshes
 
 function cityCard({ title, subtitle, image, slug }) {
 
@@ -40,6 +42,13 @@ function cityCard({ title, subtitle, image, slug }) {
             borderRadius: 2,
             overflow: "hidden",
             boxSizing: 'border-box',
+            cursor: 'pointer',
+            boxShadow: 3,
+            transition: 'box-shadow 0.3s ease',
+            '&:hover': {
+                boxShadow: '0 0 30px rgba(151, 208, 113, 0.6)'
+            }
+
         }}
         >
       {/* Image */}
