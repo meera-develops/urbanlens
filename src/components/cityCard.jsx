@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Alert } from "@mui/material";
 import {
   Card,
   CardMedia,
@@ -15,26 +15,33 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { IoIosGitCompare } from "react-icons/io";
 import { IoMdGitCompare } from "react-icons/io";
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-// import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import { useState } from "react";
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-//when user clicks on the card, or the bookmark, or the heart, all clicks should take them to the single city page for that city 
 
+//bookmark and heart should provide visual feedback/alert that the city has been liked or added to favorites 
 //and change the useState for a state that will persist for user logged in status and beyond refreshes
 
 function cityCard({ title, subtitle, image, slug }) {
 
     const [bookmarked, setBookmarked] = useState(false);
     const [liked, setLiked] = useState(false);
-    // const [chat, setChat] = useState(false);  
     const [compare, setCompared] = useState(false);
+    const [alertMsg, setAlertMsg] = useState(null);
 
     const theme = useTheme();
 
+    useEffect(() => {
+        if (alertMsg) {
+            const timer = setTimeout(() => setAlertMsg(null), 2500);
+            return () => clearTimeout(timer);
+        }
+    }, [alertMsg]);
+
     return (
         <>
-        <Card
+        <Card component={Link} to={`/citydetails/${slug}`}
         sx={{
             width: "100%",
             maxWidth: 340,
@@ -44,12 +51,13 @@ function cityCard({ title, subtitle, image, slug }) {
             boxSizing: 'border-box',
             cursor: 'pointer',
             boxShadow: 3,
+            textDecoration: 'none',
+            display: 'block',
             transition: 'box-shadow 0.3s ease',
             '&:hover': {
                 boxShadow: '0 0 30px rgba(151, 208, 113, 0.6)'
             }
-
-        }}
+        }} 
         >
       {/* Image */}
       <CardMedia
@@ -91,23 +99,28 @@ function cityCard({ title, subtitle, image, slug }) {
             pt: 0,
           }}
         >
-          <IconButton onClick={() => setBookmarked(!bookmarked)}>
-            {bookmarked ? <BookmarkIcon sx={{color: theme.palette.accent.main}} /> : <BookmarkBorderIcon sx={{color: theme.palette.accent.main}} />}
+          <IconButton onClick={(e) => { e.preventDefault(); setBookmarked(!bookmarked); setAlertMsg(bookmarked ? 'Removed from bookmarks' : 'Added to bookmarks'); }} sx={{ color: theme.palette.accent.main }}>
+            {bookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
           </IconButton>
-          <IconButton onClick={() => setLiked(!liked)} sx={{ color: theme.palette.accent.main }}>
+          <IconButton onClick={(e) => { e.preventDefault(); setLiked(!liked); setAlertMsg(liked ? 'Removed from favorites' : 'Added to favorites'); }} sx={{ color: theme.palette.accent.main }}>
             {liked ? <FavoriteIcon /> : <FavoriteBorderIcon /> }
           </IconButton>
-
-          <IconButton component={Link} to={`/communityboard/${slug}`} size="small" sx={{ color: theme.palette.accent.main }}>
+          <IconButton
+            component={Link}
+            to={`/communityboard/${slug}`}
+            size="small"
+            sx={{ color: theme.palette.accent.main }}
+            onClick={(e) => e.stopPropagation()}
+          >
             <ChatBubbleOutlineOutlinedIcon />
           </IconButton>
-
-          <IconButton onClick={() => setCompared(!compare)} sx={{ color: theme.palette.accent.main }}>
+          <IconButton onClick={(e) => { e.preventDefault(); setCompared(!compare); setAlertMsg('Select another city to compare'); }} sx={{ color: theme.palette.accent.main }}>
             {compare ? <IoMdGitCompare /> : <IoIosGitCompare /> }
           </IconButton>
         </CardActions>
       </Box>
     </Card>
+    {alertMsg && <Alert severity="success" onClose={() => setAlertMsg(null)} sx={{ mt: 1 }}>{alertMsg}</Alert>}
     </>
     )
 };

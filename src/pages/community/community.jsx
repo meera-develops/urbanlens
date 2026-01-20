@@ -1,19 +1,20 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { getCities, getCityBySlug } from "../../services/myCities";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button, useTheme } from "@mui/material";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select  from '@mui/material/Select';
 
-//add dropdown menu
 //add comment button 
 //continue going down to add comments 
 //work on it for mobile
 //think about pagination 
 
 function community() {
+
+  const theme = useTheme();
 
   const { citySlug } = useParams();
   const navigate = useNavigate();
@@ -43,8 +44,10 @@ function community() {
       >
         <Box
         sx={{
-          width: '50vw',
+          width: { xs: '90vw', lg: '50vw' },
           mb: '5',
+          display: 'flex',
+          justifyContent: 'center',
         }}
         >
           <FormControl variant="filled" sx={{ width: '200px' }}>
@@ -72,25 +75,43 @@ function community() {
           </FormControl>
         </Box>
 
-
-
         <Box
-          component="img"
-          src={city.img}
-          alt={city.title}
           sx={{
-            width: "50vw",
-            height: "auto",
-            borderRadius: "10px",
+            width: {xs: '90vw', lg: '50vw'},
             mt: 5,
           }}
-        />
-        <Typography variant="h2" color="primary"
-          sx={{ 
-            mt: 4,
-            width: '50vw' 
-          }}
-        >{city.title}</Typography>
+        >
+          <Box
+            component="img"
+            src={city.img}
+            alt={city.title}
+            sx={{
+              width: '100%',
+              height: "auto",
+              borderRadius: "10px",
+            }}
+          />
+          <Button
+              variant="contained"
+              component={Link}
+              size="large"
+              to={`/citydetails/${citySlug}`}
+              sx={{
+                mt: 2,
+                backgroundColor: theme.palette.primary.main,
+                color: theme.palette.background.main,
+              }}
+            >
+              City Details
+            </Button>
+            <Typography variant="h2" color="primary"
+              sx={{ 
+                mt: 4,
+                width: '50vw' 
+              }}
+            >{city.title}</Typography>
+        </Box>
+        
       </Box>
          
     </>

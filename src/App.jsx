@@ -10,6 +10,7 @@ import Footer from "./components/footer";
 import Signup from "./pages/login/signup";
 import RandomRedirect from "./components/randomCommunityBoard";
 import CitiesInfo from "./components/citiesInfo.js";
+import SingleCityPage from "./pages/explore/singleCityPage.jsx";
 
 //create single city page and add it as a route 
 //just go down to details 
@@ -30,6 +31,10 @@ function App() {
             <Route 
             exact path="/explore"
             element={<Explore />} />
+
+            <Route 
+            exact path="/citydetails/:citySlug"
+            element={<SingleCityPage />} />
 
             <Route
             exact path="/communityboard"
