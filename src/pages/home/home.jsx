@@ -282,17 +282,18 @@ function home() {
               <Box
               component="ul"
               sx={{
-                padding: '0',
-                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                pl: '1.3em',
                 color: theme.palette.text.main
               }}
               >
-                <Box component="li">City 1</Box>
-                <Box component="li">City 2</Box>
-                <Box component="li">City 3</Box>
-                <Box component="li">City 4</Box>
-                <Box component="li">City 5</Box>
-                <Box component="li">City 6</Box>
+                <Box component="li">Johns Creek, GA</Box>
+                <Box component="li">Centreville, VA</Box>
+                <Box component="li">Newton, MA</Box>
+                <Box component="li">Rochester Hills, MI</Box>
+                <Box component="li">Homosassa Springs, FL</Box>
+                <Box component="li">Fishers, IN</Box>
 
               </Box>
             </Box>
