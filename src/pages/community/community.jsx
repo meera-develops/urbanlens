@@ -6,6 +6,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select  from '@mui/material/Select';
+import MockComments from "../../components/mockComments.js";
+import CommunityMsg from "./communityMsg.jsx";
 
 //add comment button 
 //continue going down to add comments 
@@ -106,10 +108,35 @@ function community() {
             </Button>
             <Typography variant="h2" color="primary"
               sx={{ 
-                mt: 4,
+                my: 4,
                 width: '50vw' 
               }}
             >{city.title}</Typography>
+            <Typography variant="h3" color="primary"
+            sx={{
+              mb: 4,
+            }}
+            >
+              Top Comments
+            </Typography>
+            <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 4,
+            }}
+            >
+              {MockComments.map((comment) => (
+                <CommunityMsg key={comment.id} 
+                name={comment.name}
+                image={comment.image}
+                date={comment.date}
+                message={comment.msg}
+                />
+              ))}
+            </Box>
+
+
         </Box>
         
       </Box>

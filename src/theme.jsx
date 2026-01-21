@@ -35,7 +35,8 @@ let theme = createTheme({
             fontSize: '2rem'
         },
         body1: {
-            fontFamily: 'Pontano Sans'
+            fontFamily: 'Pontano Sans',
+            fontSize: '0.8rem'
         },
         body2: {
             fontFamily: 'Pontano Sans',
