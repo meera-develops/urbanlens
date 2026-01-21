@@ -45,12 +45,13 @@ function communityMsg({ name, image, date, message }) {
                             objectFit: 'cover'
                         }}
                         ></Box>
-                        <Box 
-                        sx={{ 
-                            display: 'flex', 
+                        <Box
+                        sx={{
+                            display: 'flex',
                             flexDirection: 'column',
                             ml: 3,
                             mt: 2,
+                            flex: 1,
                         }}
                         
                         >

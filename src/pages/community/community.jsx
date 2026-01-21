@@ -8,13 +8,33 @@ import FormControl from '@mui/material/FormControl';
 import Select  from '@mui/material/Select';
 import MockComments from "../../components/mockComments.js";
 import CommunityMsg from "./communityMsg.jsx";
+import TextField from '@mui/material/TextField';
+import janeDoe from "../../assets/img/usersImages/jane_doe.jpg"
 
-//add comment button 
-//continue going down to add comments 
-//work on it for mobile
-//think about pagination 
+//TODO about pagination 
+//Backend TODO - consider incorporating counter for likes button 
 
 function community() {
+
+  const [comments, setComments] = useState(MockComments);
+  const [newComment, setNewComment] = useState("");
+
+  const handlePostComment = (e) => {
+    e.preventDefault();
+
+    if (!newComment.trim()) return;
+
+    const commentToAdd = {
+      id: comments.length + 1,
+      name: "Jane Doe",
+      image: janeDoe,
+      date: new Date().toISOString().split("T")[0],
+      msg: newComment,
+    };
+
+    setComments([commentToAdd, ...comments]);
+    setNewComment("");
+  }
 
   const theme = useTheme();
 
@@ -126,7 +146,43 @@ function community() {
               gap: 4,
             }}
             >
-              {MockComments.map((comment) => (
+              <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+              >
+                <form onSubmit={handlePostComment}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  gap: '16px'
+                  }}>
+                  <TextField id="outlined-textarea" label="Add a Comment" 
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  multiline
+                  sx={{
+                    fontFamily: "'Pontano Sans', 'serif'",
+                    width: {xs: '80vw', md: '40vw'},
+                    fontSize: '1rem',
+                  }}
+                  />
+                  <Button
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    backgroundColor: theme.palette.primary.main,
+                    color: theme.palette.accent.main,
+                  }}
+                  type="submit"
+                  >
+                    Submit
+                  </Button>
+                </form>
+              </Box>
+              {comments.slice().reverse().map((comment) => (
                 <CommunityMsg key={comment.id} 
                 name={comment.name}
                 image={comment.image}
