@@ -28,11 +28,11 @@ function community() {
       id: comments.length + 1,
       name: "Jane Doe",
       image: janeDoe,
-      date: new Date().toISOString().split("T")[0],
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
       msg: newComment,
     };
 
-    setComments([commentToAdd, ...comments]);
+    setComments([...comments, commentToAdd ]);
     setNewComment("");
   }
 

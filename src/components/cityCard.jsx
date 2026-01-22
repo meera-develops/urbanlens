@@ -17,7 +17,7 @@ import { IoMdGitCompare } from "react-icons/io";
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 //bookmark and heart should provide visual feedback/alert that the city has been liked or added to favorites 
@@ -31,6 +31,7 @@ function cityCard({ title, subtitle, image, slug }) {
     const [alertMsg, setAlertMsg] = useState(null);
 
     const theme = useTheme();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (alertMsg) {
@@ -50,7 +51,7 @@ function cityCard({ title, subtitle, image, slug }) {
             overflow: "hidden",
             boxSizing: 'border-box',
             cursor: 'pointer',
-            boxShadow: 3,
+            boxShadow: 4,
             textDecoration: 'none',
             display: 'block',
             transition: 'box-shadow 0.3s ease',
@@ -106,11 +107,9 @@ function cityCard({ title, subtitle, image, slug }) {
             {liked ? <FavoriteIcon /> : <FavoriteBorderIcon /> }
           </IconButton>
           <IconButton
-            component={Link}
-            to={`/communityboard/${slug}`}
             size="small"
             sx={{ color: theme.palette.accent.main }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigate(`/communityboard/${slug}`); }}
           >
             <ChatBubbleOutlineOutlinedIcon />
           </IconButton>
