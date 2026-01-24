@@ -51,7 +51,8 @@ let theme = createTheme({
             fontSize: '2rem'
         },
         forms: {
-            fontFamily: 'Pontano Sans'
+            fontFamily: 'Pontano Sans',
+            fontSize: '1.5rem'
         }
     },
     components: {

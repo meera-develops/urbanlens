@@ -11,7 +11,7 @@ import Cities from "../../components/citiesInfo.js";
 
 
 function home() {
-  const theme = useTheme(); //callback hook for theme
+  const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   const myCities = Cities.slice(5, 7);
