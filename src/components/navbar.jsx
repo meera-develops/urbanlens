@@ -31,8 +31,8 @@ function navbar() {
     return (
         <>
             <AppBar position="static">
-                <Toolbar sx={{justifyContent: 'space-between', alignItems: 'center', px: {xs: 3, lg: 10, xl: 32}}}>
-                    <Box sx={{display:{xs: 'flex', md: 'none'}}}>
+                <Toolbar sx={{justifyContent: 'space-between', alignItems: 'center', px: {xs: 1, lg: 10, xl: 32}}}>
+                    <Box sx={{display:{xs: 'flex', md: 'none'}, alignItems: 'center', gap: 1}}>
                         <IconButton size='large' edge='start' color='inherit' onClick={openMenu}>
                             <MenuIcon
                             />
@@ -53,6 +53,7 @@ function navbar() {
                                 ))}
                             </MenuList>
                         </Menu>
+                        <SearchBar />
                     </Box>
                     <Box component={Link}
                         to="/" 
@@ -104,7 +105,7 @@ function navbar() {
                             </Button>
                         ))}
                         <Box sx={{
-                            ml:{ lg: 4, xl: 12 }
+                            ml:{ xs: 1, lg: 4, xl: 12 }
                         }}>
                             <SearchBar />
                         </Box>

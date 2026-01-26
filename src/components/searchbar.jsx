@@ -35,19 +35,24 @@ function SearchBar() {
                 alignItems: 'center',
                 backgroundColor: 'white',
                 borderRadius: '999px',
-                px: 2,
-                py: 0.5,
-                width: { xs: '100%', md: 300 },
+                px: { xs: 1, md: 2 },
+                py: { xs: 0.25, md: 0.5 },
+                width: { xs: 100, md: 300 },
+                mr: {xs: 1, }
             }}
         >
-            <SearchIcon sx={{ color: 'black', mr: 1 }} />
+            <SearchIcon sx={{ color: 'black', mr: { xs: 0.5, md: 1 }, fontSize: { xs: 18, md: 24 } }} />
             <InputBase
-                placeholder="Search cities..."
+                placeholder="Search"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 sx={{
                     flex: 1,
                     fontFamily: '"Pontano Sans", sans-serif',
+                    fontSize: { xs: 12, md: 16 },
+                    '& input::placeholder': {
+                        fontSize: { xs: 12, md: 14 },
+                    },
                 }}
             />
             {searchTerm && (
@@ -56,7 +61,7 @@ function SearchBar() {
                     onClick={handleClear}
                     sx={{ p: 0.5 }}
                 >
-                    <ClearIcon sx={{ fontSize: 18, color: 'grey' }} />
+                    <ClearIcon sx={{ fontSize: { xs: 14, md: 18 }, color: 'grey' }} />
                 </IconButton>
             )}
         </Box>
