@@ -1,26 +1,30 @@
-import { Box, Typography, Divider, } from '@mui/material';
+import { Box, Typography, Divider, Button, Drawer, IconButton, useMediaQuery } from '@mui/material';
+import TuneIcon from '@mui/icons-material/Tune';
+import CloseIcon from '@mui/icons-material/Close';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useTheme } from "@mui/material/styles";
-import { getCities, getCityBySlug } from "../services/myCities";
+import { getCities } from "../services/myCities";
 import InputLabel from '@mui/material/InputLabel';
 import Select  from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Slider from '@mui/material/Slider';
 
 //import range slider and price slider 
 //finish making this page
-//add logic to price function 
+ 
 //check on mobile 
 //add apply button 
 //TODO: add more logic for back-end 
-//add field for price 
 
+function myValue(value) {
+  return `${value}`;
+}
 
 function Sidebar({ sortOrder, setSortOrder }) {
   const theme = useTheme();
@@ -28,19 +32,30 @@ function Sidebar({ sortOrder, setSortOrder }) {
   const { citySlug } = useParams();
   const navigate = useNavigate();
   const [option, setOption] = useState(citySlug || '');
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleChange = (e) => {
     const newSlug = e.target.value;
     setOption(newSlug);
     navigate(`/citydetails/${newSlug}`);
   };
-  
 
-  return (
+  const [value, setValue] = useState([0, 100]);
+  const mySlider = (e, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleApply = () => {
+    setDrawerOpen(false);
+    // Add your filter logic here
+  };
+
+  const filterContent = (
     <Box
       sx={{
-        backgroundColor: 'rgba(120, 145, 116, 0.6)',
-        minHeight: '100%',
+        backgroundColor: isMobile ? 'transparent' : 'rgba(120, 145, 116, 0.6)',
+        height: 'auto',
       }}
     >
       <Box
@@ -49,9 +64,12 @@ function Sidebar({ sortOrder, setSortOrder }) {
        px: '0.8rem',
        display: 'flex',
        flexDirection: 'column',
+       gap: 1,
       }}
       >
-        <Typography variant="h3" color="text">
+        <Typography variant="h3" color="text"
+        
+        >
           Filter Results
         </Typography>
         <Divider color="text">
@@ -60,10 +78,8 @@ function Sidebar({ sortOrder, setSortOrder }) {
           Price
         </Typography>
         <FormControl variant="outlined" sx={{ width: '200px', my: 1 }}>
-                    <InputLabel variant="hidden">Price</InputLabel>
                     <Select
                       value={sortOrder}
-                      label="Price"
                       sx={{ backgroundColor: '#fff' }}
                       onChange={(e) => setSortOrder(e.target.value)}
                       MenuProps={{ disableScrollLock: true }}
@@ -77,7 +93,7 @@ function Sidebar({ sortOrder, setSortOrder }) {
         </Divider>
         
         <FormControl>
-          <FormLabel
+          <FormLabel id="population-label"
           sx= {{
             fontFamily: '"Pontano Sans", "serif"',
             fontSize: '1.5rem',
@@ -85,13 +101,12 @@ function Sidebar({ sortOrder, setSortOrder }) {
           }}
           >Population</FormLabel>
           <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
-            name="radio-buttons-group"
+            aria-labelledby="population-label"
+            name="population-group"
           >
             <FormControlLabel value="smallTowns" control={<Radio />} label="Under 50,000 (Small Towns)" />
             <FormControlLabel value="midSize" control={<Radio />} label="50,000 – 250,000 (Mid-Size Cities)" />
-            <FormControlLabel value="largeCities" control={<Radio />} label="250,000 – 1 Million (Large Cities" />
+            <FormControlLabel value="largeCities" control={<Radio />} label="250,000 – 1 Million (Large Cities)" />
             <FormControlLabel value="majorMetros" control={<Radio />} label="Over 1 Million (Major Metros)" />
           </RadioGroup>
         </FormControl>
@@ -99,7 +114,7 @@ function Sidebar({ sortOrder, setSortOrder }) {
         <Divider color="text">
         </Divider>
         <FormControl>
-          <FormLabel
+          <FormLabel id="climate-label"
           sx= {{
             fontFamily: '"Pontano Sans", "serif"',
             fontSize: '1.5rem',
@@ -107,9 +122,8 @@ function Sidebar({ sortOrder, setSortOrder }) {
           }}
           >Climate</FormLabel>
           <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
-            name="radio-buttons-group"
+            aria-labelledby="climate-label"
+            name="climate-group"
           >
             <FormControlLabel value="warm" control={<Radio />} label="Warm and Sunny" />
             <FormControlLabel value="mild" control={<Radio />} label="Moderate" />
@@ -144,12 +158,125 @@ function Sidebar({ sortOrder, setSortOrder }) {
         </FormControl>
         <Divider color="text">
         </Divider>
-        {/* //incorporate slider here */}
+        <Typography variant="forms" color="text">Quality-of-Life Score</Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, }}>
+          <Typography variant="forms" color="text">0</Typography>
+          <Slider
+            getAriaLabel={() => 'Quality-of-Life Score Range'}
+            aria-labelledby="qol-slider"
+            value={value}
+            onChange={mySlider}
+            valueLabelDisplay='auto'
+            getAriaValueText={myValue}
+          />
+          <Typography variant="forms" color="text">100</Typography>
+        </Box>
+        <Divider color="text">
+        </Divider>
+        <FormControl>
+          <FormLabel id="education-label"
+          sx= {{
+            fontFamily: '"Pontano Sans", "serif"',
+            fontSize: '1.5rem',
+            color: theme.palette.text.main
+          }}
+          >Education & Schools</FormLabel>
+          <RadioGroup
+            aria-labelledby="education-label"
+            name="education-group"
+          >
+            <FormControlLabel value="excellent" control={<Radio />} label="Excellent (Top 10%)" />
+            <FormControlLabel value="above avg" control={<Radio />} label="Above Average" />
+            <FormControlLabel value="avg" control={<Radio />} label="Average" />
+            <FormControlLabel value="below avg" control={<Radio />} label="Below Average" />
+          </RadioGroup>
+        </FormControl>
+        <Divider color="text">
+        </Divider>
+        <FormControl>
+          <FormLabel id="cost-index-label"
+          sx= {{
+            fontFamily: '"Pontano Sans", "serif"',
+            fontSize: '1.5rem',
+            color: theme.palette.text.main
+          }}
+          >Overall Cost of Living Index</FormLabel>
+          <RadioGroup
+            aria-labelledby="cost-index-label"
+            name="overall-group"
+          >
+            <FormControlLabel value="affordable" control={<Radio />} label="Under 80 - Affordable" />
+            <FormControlLabel value="average" control={<Radio />} label="80 - 100 - Average" />
+            <FormControlLabel value="aa" control={<Radio />} label="100 - 120 - Above Average" />
+            <FormControlLabel value="expensive" control={<Radio />} label="120+ Expensive" />
+          </RadioGroup>
+        </FormControl>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            backgroundColor: theme.palette.primary.main,
+            color: theme.palette.background.default,
+            border: '2px solid',
+            borderColor: theme.palette.background.default,
+            alignSelf: 'flex-start',
+            width: '50%',
+            fontSize: '1.2rem',
+            mt: 2,
+            mb: 5,
+          }}
+          onClick={handleApply}
+        >
+          Apply
+        </Button>
 
       </Box>
-
     </Box>
   );
+
+  // Mobile: show filter button + drawer
+  if (isMobile) {
+    return (
+      <>
+        <Button
+          variant="outlined"
+          startIcon={<TuneIcon />}
+          onClick={() => setDrawerOpen(true)}
+          sx={{
+            m: 2,
+            borderColor: theme.palette.primary.main,
+            color: theme.palette.primary.main,
+          }}
+        >
+          Filters
+        </Button>
+        <Drawer
+          anchor="left"
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+          slotProps={{
+            paper: {
+              sx: {
+                width: '85%',
+                maxWidth: 360,
+                backgroundColor: 'rgb(173, 189, 171)',
+              }
+            }
+          }}
+        >
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }}>
+            <IconButton onClick={() => setDrawerOpen(false)}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+          {filterContent}
+        </Drawer>
+      </>
+    );
+  }
+
+  // Desktop: show sidebar normally
+  return filterContent;
 }
 
 export default Sidebar;

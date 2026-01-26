@@ -53,6 +53,7 @@ function explore() {
       <Box
       sx={{
         ml: '-10px',
+        px: {xs: 2, md: 0}
       }}
       >
         <Grid container spacing={1}>
