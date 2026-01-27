@@ -18,6 +18,9 @@ function login () {
     const handleMouseUpPw = (e) => {
         e.preventDefault();
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
 
     return (
         <>
@@ -52,13 +55,13 @@ function login () {
             }}
             >
                 <Typography variant="h2" color="text">Login</Typography>
-                <Box component="form"
+                <Box component="form" onSubmit={handleSubmit}
                 sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 3,
                     width: '70%',
                 }}
                 >
-                    <TextField id="email" label="email" variant="outlined" />
-                    <TextField id="pw" label="password" variant="outlined" type={showPw ? 'text' : 'password'} slotProps={{
+                    <TextField id="email" label="email" variant="outlined" required />
+                    <TextField id="pw" label="password" variant="outlined" required type={showPw ? 'text' : 'password'} slotProps={{
                         input: {
                             endAdornment: 
                                 <InputAdornment position="end">
@@ -80,8 +83,9 @@ function login () {
                     <Button
                     variant="contained"
                     size="large"
+                    type="submit"
                     sx={{
-                        mt: 2,
+                        my: 2,
                         backgroundColor: theme.palette.primary.main,
                         color: theme.palette.background.main,
                         fontSize: '1.2rem'
@@ -89,8 +93,17 @@ function login () {
                     >
                     Submit
                     </Button>
-
                 </Box>
+                <Link
+                to="/signup"
+                style={{
+                    margiTop: '3rem',
+                    fontSize: '0.9rem',
+                    color: theme.palette.text.main
+                }}  
+                >
+                Create Account
+                </Link>
             </Box>
         </Box>
         </>
