@@ -180,15 +180,15 @@ function Sidebar({ sortOrder, setSortOrder }) {
             fontSize: '1.5rem',
             color: theme.palette.text.main
           }}
-          >Education & Schools</FormLabel>
+          >High School Graduation Rate</FormLabel>
           <RadioGroup
             aria-labelledby="education-label"
             name="education-group"
           >
-            <FormControlLabel value="excellent" control={<Radio />} label="Excellent (Top 10%)" />
-            <FormControlLabel value="above avg" control={<Radio />} label="Above Average" />
-            <FormControlLabel value="avg" control={<Radio />} label="Average" />
-            <FormControlLabel value="below avg" control={<Radio />} label="Below Average" />
+            <FormControlLabel value="excellent" control={<Radio />} label="90 - 100% - Excellent" />
+            <FormControlLabel value="above avg" control={<Radio />} label="85% - 90% - Above Average" />
+            <FormControlLabel value="avg" control={<Radio />} label="60% - 85% - Average" />
+            <FormControlLabel value="below avg" control={<Radio />} label="0 - 60% - Below Average" />
           </RadioGroup>
         </FormControl>
         <Divider color="text">
