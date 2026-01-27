@@ -11,6 +11,7 @@ import Signup from "./pages/login/signup";
 import RandomRedirect from "./components/randomCommunityBoard";
 import CitiesInfo from "./components/citiesInfo.js";
 import SingleCityPage from "./pages/explore/singleCityPage.jsx";
+import UserAccount from "./pages/account/userAccount.jsx";
 
 //create single city page and add it as a route 
 //just go down to details 
@@ -59,6 +60,10 @@ function App() {
             <Route
             exact path ="/signup"
             element={<Signup />} />
+
+            <Route
+            exact path="/account"
+            element={<UserAccount />} />
 
           </Routes>
         </main>
