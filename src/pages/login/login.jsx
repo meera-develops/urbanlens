@@ -1,9 +1,98 @@
+import Typography from "@mui/material/Typography";
+import { Box, Button, InputAdornment, TextField, IconButton } from "@mui/material";
+import background from "../../assets/img/login-bg.jpg";
+import { useTheme } from "@mui/material/styles";
+import { Link } from "react-router-dom";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useState } from "react";
+
 function login () {
+
+    const theme = useTheme();
+    const [showPw, setShowPw] = useState(false);
+    const handleClickShowPw = () => setShowPw((show) => !show);
+    const handleMouseDownPw = (e) => {
+        e.preventDefault();
+    };
+    const handleMouseUpPw = (e) => {
+        e.preventDefault();
+    }
 
     return (
         <>
-            <h1>Log in here or click below to sign up</h1>
-            <a href="/signup">Sign up</a>
+        <Box
+        sx={{
+            backgroundImage: `url(${background})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            height: '100vh',
+            ml: '-10px',
+            mb: '-2.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+
+        }}
+        >
+            <Box
+            sx={{ 
+                backgroundColor: 'rgba(252, 251, 246, 0.65)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
+                borderRadius: 3,
+                width: {xs: '90vw', md: '50vw'},
+                height: '60vh',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}
+            >
+                <Typography variant="h2" color="text">Login</Typography>
+                <Box component="form"
+                sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 3,
+                    width: '70%',
+                }}
+                >
+                    <TextField id="email" label="email" variant="outlined" />
+                    <TextField id="pw" label="password" variant="outlined" type={showPw ? 'text' : 'password'} slotProps={{
+                        input: {
+                            endAdornment: 
+                                <InputAdornment position="end">
+                                    <IconButton
+                                    aria-label={
+                                        showPw ? 'hide the password' : 'display the password'
+                                    }
+                                    onClick={handleClickShowPw}
+                                    onMouseDown={handleMouseDownPw}
+                                    onMouseUp={handleMouseUpPw}
+                                    edge="end"
+                                    >
+                                    {showPw ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                        },
+                        }} 
+                    />
+                    <Button
+                    variant="contained"
+                    size="large"
+                    sx={{
+                        mt: 2,
+                        backgroundColor: theme.palette.primary.main,
+                        color: theme.palette.background.main,
+                        fontSize: '1.2rem'
+                    }}
+                    >
+                    Submit
+                    </Button>
+
+                </Box>
+            </Box>
+        </Box>
         </>
     )
 } 
