@@ -1,7 +1,7 @@
 import { getCities, getCityBySlug } from "../../services/myCities";
-import { Box, Typography, IconButton, useTheme, Alert } from "@mui/material";
+import { Box, Typography, IconButton, useTheme, Snackbar, Alert } from "@mui/material";
 import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
@@ -24,15 +24,14 @@ function SingleCityPage() {
     const [compare, setCompared] = useState(false);
     const [alertMsg, setAlertMsg] = useState(null);
 
+    const showAlert = (msg) => {
+        setAlertMsg(null);
+        setTimeout(() => setAlertMsg(msg), 100);
+    };
+
     const theme = useTheme();
 
-    useEffect(() => {
-        if (alertMsg) {
-            const timer = setTimeout(() => setAlertMsg(null), 2500);
-            return () => clearTimeout(timer);
-        }
-    }, [alertMsg]);
-
+    
     return (
         <>
         <Box
@@ -62,10 +61,10 @@ function SingleCityPage() {
                 }}
                 />
                 <Box sx={{ mt: 1 }}>
-                    <IconButton onClick={() => { setBookmarked(!bookmarked); setAlertMsg(bookmarked ? 'Removed from bookmarks' : 'Added to bookmarks'); }} sx={{ color: theme.palette.primary.main }}>
+                    <IconButton onClick={() => { setBookmarked(!bookmarked); showAlert(bookmarked ? 'Removed from bookmarks' : 'Added to bookmarks'); }} sx={{ color: theme.palette.primary.main }}>
                         {bookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
                     </IconButton>
-                    <IconButton onClick={() => { setLiked(!liked); setAlertMsg(liked ? 'Removed from favorites' : 'Added to favorites'); }} sx={{ color: theme.palette.primary.main }}>
+                    <IconButton onClick={() => { setLiked(!liked); showAlert(liked ? 'Removed from favorites' : 'Added to favorites'); }} sx={{ color: theme.palette.primary.main }}>
                         {liked ? <FavoriteIcon /> : <FavoriteBorderIcon /> }
                     </IconButton>
                     <IconButton
@@ -76,11 +75,20 @@ function SingleCityPage() {
                     >
                         <ChatBubbleOutlineOutlinedIcon />
                     </IconButton>
-                    <IconButton onClick={() => { setCompared(!compare); setAlertMsg('Select another city to compare'); }} sx={{ color: theme.palette.primary.main }}>
+                    <IconButton onClick={() => { setCompared(!compare); showAlert('Select another city to compare'); }} sx={{ color: theme.palette.primary.main }}>
                         {compare ? <IoMdGitCompare /> : <IoIosGitCompare /> }
                     </IconButton>
                 </Box>
-                {alertMsg && <Alert severity="success" onClose={() => setAlertMsg(null)} sx={{ mt: 1, width: 'fit-content' }}>{alertMsg}</Alert>}
+                <Snackbar
+                    open={!!alertMsg}
+                    autoHideDuration={2500}
+                    onClose={() => setAlertMsg(null)}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                >
+                    <Alert onClose={() => setAlertMsg(null)} severity="success" variant="standard">
+                        {alertMsg}
+                    </Alert>
+                </Snackbar>
 
                 <Typography variant="h2" color="primary"
                 sx={{ 

@@ -1,4 +1,4 @@
-import { Typography, Alert } from "@mui/material";
+import { Typography, Snackbar, Alert } from "@mui/material";
 import {
   Card,
   CardMedia,
@@ -16,7 +16,7 @@ import { IoIosGitCompare } from "react-icons/io";
 import { IoMdGitCompare } from "react-icons/io";
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -30,16 +30,15 @@ function cityCard({ title, subtitle, image, slug }) {
     const [compare, setCompared] = useState(false);
     const [alertMsg, setAlertMsg] = useState(null);
 
+    const showAlert = (msg) => {
+        setAlertMsg(null);
+        setTimeout(() => setAlertMsg(msg), 100);
+    };
+
     const theme = useTheme();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (alertMsg) {
-            const timer = setTimeout(() => setAlertMsg(null), 2500);
-            return () => clearTimeout(timer);
-        }
-    }, [alertMsg]);
-
+    
     return (
         <>
         <Card component={Link} to={`/citydetails/${slug}`}
@@ -100,10 +99,10 @@ function cityCard({ title, subtitle, image, slug }) {
             pt: 0,
           }}
         >
-          <IconButton onClick={(e) => { e.preventDefault(); setBookmarked(!bookmarked); setAlertMsg(bookmarked ? 'Removed from bookmarks' : 'Added to bookmarks'); }} sx={{ color: theme.palette.accent.main }}>
+          <IconButton onClick={(e) => { e.preventDefault(); setBookmarked(!bookmarked); showAlert(bookmarked ? 'Removed from bookmarks' : 'Added to bookmarks'); }} sx={{ color: theme.palette.accent.main }}>
             {bookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
           </IconButton>
-          <IconButton onClick={(e) => { e.preventDefault(); setLiked(!liked); setAlertMsg(liked ? 'Removed from favorites' : 'Added to favorites'); }} sx={{ color: theme.palette.accent.main }}>
+          <IconButton onClick={(e) => { e.preventDefault(); setLiked(!liked); showAlert(liked ? 'Removed from favorites' : 'Added to favorites'); }} sx={{ color: theme.palette.accent.main }}>
             {liked ? <FavoriteIcon /> : <FavoriteBorderIcon /> }
           </IconButton>
           <IconButton
@@ -113,13 +112,22 @@ function cityCard({ title, subtitle, image, slug }) {
           >
             <ChatBubbleOutlineOutlinedIcon />
           </IconButton>
-          <IconButton onClick={(e) => { e.preventDefault(); setCompared(!compare); setAlertMsg('Select another city to compare'); }} sx={{ color: theme.palette.accent.main }}>
+          <IconButton onClick={(e) => { e.preventDefault(); setCompared(!compare); showAlert('Select another city to compare'); }} sx={{ color: theme.palette.accent.main }}>
             {compare ? <IoMdGitCompare /> : <IoIosGitCompare /> }
           </IconButton>
         </CardActions>
       </Box>
     </Card>
-    {alertMsg && <Alert severity="success" onClose={() => setAlertMsg(null)} sx={{ mt: 1 }}>{alertMsg}</Alert>}
+    <Snackbar
+        open={!!alertMsg}
+        autoHideDuration={2500}
+        onClose={() => setAlertMsg(null)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+    >
+        <Alert onClose={() => setAlertMsg(null)} severity="success" variant="standard">
+            {alertMsg}
+        </Alert>
+    </Snackbar>
     </>
     )
 };

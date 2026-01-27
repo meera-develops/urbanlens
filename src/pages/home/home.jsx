@@ -235,7 +235,7 @@ function home() {
             >
               Discover what life in your next city is really like. Connect with locals, ask questions, and share your own experiences on our community board. Whether you’re researching your first move or comparing neighborhoods, UrbanLens makes it easy to learn from real people who’ve been there.
             </Typography>
-            <Button color="accent" variant="contained" component={Link} to="/login"
+            <Button color="accent" variant="contained" component={Link} to="/signup"
               sx={{
                 fontWeight: 600,
                 mt: {xs: 3, md: 5,},

@@ -43,7 +43,7 @@ function login () {
             <Box
             sx={{ 
                 backgroundColor: 'rgba(252, 251, 246, 0.65)',
-                backdropFilter: 'blur(10px)',
+                backdropFilter: 'blur(15px)',
                 boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
                 borderRadius: 3,
                 width: {xs: '90vw', md: '50vw'},
@@ -60,10 +60,25 @@ function login () {
                     width: '70%',
                 }}
                 >
-                    <TextField id="email" label="email" variant="outlined" required />
-                    <TextField id="pw" label="password" variant="outlined" required type={showPw ? 'text' : 'password'} slotProps={{
+                    <TextField id="email" label="email" variant="filled" required slotProps={{
                         input: {
-                            endAdornment: 
+                            sx: {
+                                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                                '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.9)' },
+                                '&.Mui-focused': { backgroundColor: 'rgba(255, 255, 255, 1)' },
+                                '&:before, &:after': { display: 'none' },
+                            },
+                        },
+                    }} />
+                    <TextField id="pw" label="password" variant="filled" required type={showPw ? 'text' : 'password'} slotProps={{
+                        input: {
+                            sx: {
+                                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                                '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.9)' },
+                                '&.Mui-focused': { backgroundColor: 'rgba(255, 255, 255, 1)' },
+                                '&:before, &:after': { display: 'none' },
+                            },
+                            endAdornment:
                                 <InputAdornment position="end">
                                     <IconButton
                                     aria-label={
