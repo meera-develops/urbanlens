@@ -334,11 +334,11 @@ function home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
-                      color: 'inherit',          // 👈 use parent color
+                      color: 'inherit',          
                       textDecoration: 'underline',
                       cursor: 'pointer',
                       '&:visited': {
-                        color: 'inherit',        // 👈 prevent purple
+                        color: 'inherit',        
                       },
                       '&:hover': {
                         textDecoration: 'underline',

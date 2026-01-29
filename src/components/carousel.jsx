@@ -152,7 +152,7 @@ function carousel() {
                 <div className="content">
                   <div className="text-box">
                     <Typography variant="body3" color="text">
-                      {slide.description}
+                      {slide.carousel}
                     </Typography>
                   </div>
                   <div className="footer">

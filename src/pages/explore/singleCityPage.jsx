@@ -1,5 +1,5 @@
 import { getCities, getCityBySlug } from "../../services/myCities";
-import { Box, Typography, IconButton, useTheme, Snackbar, Alert } from "@mui/material";
+import { Box, Button, Typography, IconButton, useTheme, Snackbar, Alert, Grid } from "@mui/material";
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -36,48 +36,141 @@ function SingleCityPage() {
         <>
         <Box
         sx={{
-
+            
         }}
         >
             <Box
             sx={{
-                backgroundColor: '#ECEFDE',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: '100%',
+                py: '1.5rem',
                 ml: '-10px',
-                pl: '20px',
-                width: '100vw',
-                py: '1.5rem'
             }}
             >
+                <Box sx={{ width: {xs: '90vw', lg: '60vw'}, mt: 5 }}>
+                    <Box
+                    component="img"
+                    src={city.img}
+                    alt={city.title}
+                    sx={{
+                        width: '100%',
+                        height: "auto",
+                        borderRadius: "10px",
+                        display: 'block',
+                    }}
+                    />
+                    <Box sx={{ mt: 1 }}>
+                        <IconButton onClick={() => { setBookmarked(!bookmarked); showAlert(bookmarked ? 'Removed from bookmarks' : 'Added to bookmarks'); }} sx={{ color: theme.palette.primary.main }}>
+                            {bookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                        </IconButton>
+                        <IconButton onClick={() => { setLiked(!liked); showAlert(liked ? 'Removed from favorites' : 'Added to favorites'); }} sx={{ color: theme.palette.primary.main }}>
+                            {liked ? <FavoriteIcon /> : <FavoriteBorderIcon /> }
+                        </IconButton>
+                        <IconButton
+                            component={Link}
+                            to={`/communityboard/${citySlug}`}
+                            size="small"
+                            sx={{ color: theme.palette.primary.main }}
+                        >
+                            <ChatBubbleOutlineOutlinedIcon />
+                        </IconButton>
+                        <IconButton onClick={() => { setCompared(!compare); showAlert('Select another city to compare'); }} sx={{ color: theme.palette.primary.main }}>
+                            {compare ? <IoMdGitCompare /> : <IoIosGitCompare /> }
+                        </IconButton>
+                    </Box>
+                    <Box>
+                        <Typography variant="h2" color="primary"
+                        sx={{ 
+                            my: 4,
+                        }}
+                        >City Details - <em>{city.title}</em></Typography>
+                        <Typography
+                        variant="body2">{city.description}</Typography>
+                    </Box>
+                </Box>
                 <Box
-                component="img"
-                src={city.img}
-                alt={city.title}
-                sx={{
-                    width: {xs: '90vw', lg: '50vw'},
-                    height: "auto",
-                    borderRadius: "10px",
-                    mt: 5,
-                    display: 'block',
-                }}
-                />
-                <Box sx={{ mt: 1 }}>
-                    <IconButton onClick={() => { setBookmarked(!bookmarked); showAlert(bookmarked ? 'Removed from bookmarks' : 'Added to bookmarks'); }} sx={{ color: theme.palette.primary.main }}>
-                        {bookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
-                    </IconButton>
-                    <IconButton onClick={() => { setLiked(!liked); showAlert(liked ? 'Removed from favorites' : 'Added to favorites'); }} sx={{ color: theme.palette.primary.main }}>
-                        {liked ? <FavoriteIcon /> : <FavoriteBorderIcon /> }
-                    </IconButton>
-                    <IconButton
-                        component={Link}
-                        to={`/communityboard/${citySlug}`}
-                        size="small"
-                        sx={{ color: theme.palette.primary.main }}
+                    sx={{
+                        backgroundColor: theme.palette.primary.main,
+                        color: theme.palette.background.default,
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        my: 3,
+                        py: 5,
+                        px: 2,
+                    }}
                     >
-                        <ChatBubbleOutlineOutlinedIcon />
-                    </IconButton>
-                    <IconButton onClick={() => { setCompared(!compare); showAlert('Select another city to compare'); }} sx={{ color: theme.palette.primary.main }}>
-                        {compare ? <IoMdGitCompare /> : <IoIosGitCompare /> }
-                    </IconButton>
+                    <Typography variant="h2">City Snapshot</Typography>
+                    <Typography variant="body2" sx={{ mt: 1, }}>
+                        These key metrics offer a quick overview of what it’s like to live in this city.
+                    </Typography>
+                    <Grid container rowSpacing={{ md: 1,}} columnSpacing={{ md: 10, lg: 18, xl: 30 }}  sx={{ mt: 2,
+                        width: {xs: '90vw', lg: '40vw', xl: '30vw', },
+                        justifyContent: 'center',
+                        textAlign: 'left',
+                        display: 'flex',
+                        flexDirection: { xs: 'column', md: 'row'},
+                     }}>
+                        {[
+                            { label: 'Quality of Life', value: city.qol },
+                            { label: 'Average Salary', value: city.salary },
+                            { label: 'Cost Index', value: city.cost_index },
+                            { label: 'Population', value: city.population },
+                            { label: 'Climate', value: city.climate },
+                            { label: 'Average Commute', value: city.avg_commute },
+                            { label: 'Avg Cost of Living', value: city.avg_cost_of_living },
+                            { label: '2 Bedroom Rent', value: city.br_rent },
+                        ].map((item) => (
+                            <Grid size={{ xs: 12, md: 6 }} key={item.label}>
+                                <Typography variant="body2">• {item.label}: {item.value}</Typography>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Box>
+                <Box
+                sx={{
+                    width: {xs: '90vw', lg: '60vw'},
+                }}
+                >
+                    <Grid container>
+                        <Grid item size={{ xs: 12, md: 6}}>
+                            <Typography variant="h2" color="primary">What It's Known For</Typography>
+                            <Typography variant="body2" color="text"
+                            sx={{
+                                my: 2,
+                                pr: 2,
+                            }}
+                            >{city.subtitle}</Typography>
+                            <Button color="accent" variant="contained" component={Link}
+                            to={`/communityboard/${citySlug}`}
+                            sx={{
+                                fontWeight: 600,
+                                fontFamily: "'Libre Baskerville'",
+                                fontSize: '1rem',
+                            }}
+                            >
+                            Comment on this City 
+                            </Button>
+                        </Grid>
+                        <Grid item size={{ xs: 12, md: 6}}
+                        sx={{}}
+                        >
+                            <Box 
+                            component="img"
+                            src={city.img}
+                            alt={city.title}
+                            sx={{
+                            width: '100%',
+                            height: "auto",
+                            borderRadius: "10px",
+                            display: 'block',
+                            }}
+                            />
+                        </Grid>
+                    </Grid>
                 </Box>
                 <Snackbar
                     open={!!alertMsg}
@@ -89,15 +182,6 @@ function SingleCityPage() {
                         {alertMsg}
                     </Alert>
                 </Snackbar>
-
-                <Typography variant="h2" color="primary"
-                sx={{ 
-                    my: 4,
-                    width: '50vw' 
-                }}
-                >City Details - <em>{city.title}</em></Typography>
-                <Typography
-                variant="body1">{city.subtitle}</Typography>
                 </Box>
             </Box>
         </>
