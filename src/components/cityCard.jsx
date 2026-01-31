@@ -20,14 +20,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 
-//bookmark and heart should provide visual feedback/alert that the city has been liked or added to favorites 
 //and change the useState for a state that will persist for user logged in status and beyond refreshes
 
-function cityCard({ title, subtitle, image, slug }) {
+function cityCard({ title, subtitle, image, slug, onCompare, isComparing }) {
 
     const [bookmarked, setBookmarked] = useState(false);
     const [liked, setLiked] = useState(false);
-    const [compare, setCompared] = useState(false);
     const [alertMsg, setAlertMsg] = useState(null);
 
     const showAlert = (msg) => {
@@ -112,8 +110,8 @@ function cityCard({ title, subtitle, image, slug }) {
           >
             <ChatBubbleOutlineOutlinedIcon />
           </IconButton>
-          <IconButton onClick={(e) => { e.preventDefault(); setCompared(!compare); showAlert('Select another city to compare'); }} sx={{ color: theme.palette.accent.main }}>
-            {compare ? <IoMdGitCompare /> : <IoIosGitCompare /> }
+          <IconButton onClick={(e) => { e.preventDefault(); onCompare(slug); }} sx={{ color: theme.palette.accent.main }}>
+            {isComparing ? <IoMdGitCompare /> : <IoIosGitCompare /> }
           </IconButton>
         </CardActions>
       </Box>

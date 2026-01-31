@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { Box, Grid, } from '@mui/material';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Box, Grid, Snackbar, Alert } from '@mui/material';
 import Cards from "../../components/cityCard";
 import citiesInfo from "../../components/citiesInfo";
 import Sidebar from "../../components/sidebar";
 
-//check on mobile
-//continue building on mobile
 //standarize card heights
 
 const parsePrice = (priceStr) => {
@@ -48,6 +46,31 @@ function explore() {
   const filteredCities = getFilteredCities();
   const sortedCities = getSortedCities(filteredCities);
 
+  const [alertMsg, setAlertMsg] = useState(null);
+  const [compareList, setCompareList] = useState([]);
+  const navigate = useNavigate();
+
+  const handleCompare = (slug) => {
+    setCompareList(prev => {
+        if (prev.includes(slug)) {
+            setAlertMsg(null)
+            setTimeout(() => setAlertMsg('Removed from Comparision'), 100)
+            return prev.filter(s => s !== slug);
+        }
+        const updated = [...prev, slug];
+        if (updated.length === 2) {
+            navigate(`/compare/${updated[0]}/${updated[1]}`);
+            return [];
+        }
+        const city = citiesInfo.find(c => c.slug === slug);
+        setAlertMsg(null);
+        setTimeout(() => setAlertMsg(`${city?.title || slug} selected - pick another city to compare`))
+        return updated;
+    });
+  };
+
+
+
   return (
     <>
       <Box
@@ -73,6 +96,8 @@ function explore() {
                       image={city.img}
                       subtitle={city.subtitle}
                       slug={city.slug}
+                      onCompare={handleCompare}
+                      isComparing={compareList.includes(city.slug)}
                     />
                   </Grid>
                 ))}
@@ -81,7 +106,16 @@ function explore() {
         </Grid>
 
       </Box>
-      
+      <Snackbar
+          open={!!alertMsg}
+          autoHideDuration={2500}
+          onClose={() => setAlertMsg(null)}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+          <Alert onClose={() => setAlertMsg(null)} severity="success" variant="standard">
+              {alertMsg}
+          </Alert>
+      </Snackbar>
     </>
   )
 }

@@ -396,6 +396,8 @@ function home() {
                   image={city.img}
                   subtitle={city.subtitle}
                   slug={city.slug}
+                  onCompare={handleCompare}
+                  isComparing={compareList.includes(city.slug)}
                 />
               </Grid>
             ))}
