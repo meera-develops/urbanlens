@@ -2,6 +2,7 @@ import Cities from "../../components/citiesInfo.js";
 import { useParams } from "react-router-dom";
 import { Box, Typography, Grid } from "@mui/material";
 import { useTheme } from "@mui/material";
+import CompareCard from "../../components/comparisionCityCard.jsx";
 
 function compareCities() {
 
@@ -14,19 +15,36 @@ function compareCities() {
 
     return (
         <>
-            <h1>Compare here!</h1>
             <Box sx={{
                 display: 'flex',
                 flexDirection: {xs: 'column', md: 'row'},
+                justifyContent: 'center',
+                alignItems: {xs: 'center', md: 'flex-start'},
+                gap: 0,
+                pt: 3,
             }}>
-                <Box sx={{ flex: 1}}>
-                    <Typography>{city1.title}</Typography>
-                    <Typography>{city1.description}</Typography>
-                </Box>
-                <Box sx={{ flex: 1}}>
-                    <Typography>{city2.title}</Typography>
-                    <Typography>{city2.description}</Typography>
-                </Box>
+                <CompareCard
+                    title={city1.title}
+                    qol={city1.qol}
+                    image={city1.img}
+                    population={city1.population}
+                    climate={city1.climate}
+                    price={city1.price}
+                    commute={city1.avg_commute}
+                    cost_living={city1.avg_cost_of_living}
+                    slug={city1.slug}
+                />
+                <CompareCard
+                    title={city2.title}
+                    qol={city2.qol}
+                    image={city2.img}
+                    population={city2.population}
+                    climate={city2.climate}
+                    price={city2.price}
+                    commute={city2.avg_commute}
+                    cost_living={city2.avg_cost_of_living}
+                    slug={city2.slug}
+                />
             </Box>
         </>
     )
