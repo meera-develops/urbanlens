@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Box, Stack, Button, useMediaQuery, Grid } from "@mui/material";
+import { Box, Stack, Button, useMediaQuery, Grid, Alert, Snackbar } from "@mui/material";
 import heroImg from "../../assets/img/homeHero.jpg";
 import heroLogo from "../../assets/img/keyNoText.png";
 import { useTheme, alpha } from "@mui/material/styles";
@@ -8,6 +8,8 @@ import CityCarousel from "../../components/carousel.jsx";
 import web from "../../assets/img/peopleWeb.png";
 import CityCard from "../../components/cityCard.jsx";
 import Cities from "../../components/citiesInfo.js";
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 
 function home() {
@@ -15,6 +17,34 @@ function home() {
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   const myCities = Cities.slice(5, 7);
+
+  const [alertMsg, setAlertMsg] = useState(null);
+  const [compareList, setCompareList] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (compareList.length === 2) {
+      navigate(`/compare/${compareList[0]}/${compareList[1]}`);
+      setCompareList([]);
+    }
+  }, [compareList, navigate]);
+
+  const handleCompare = (slug) => {
+    setCompareList(prev => {
+        if (prev.includes(slug)) {
+            setAlertMsg(null)
+            setTimeout(() => setAlertMsg('Removed from Comparision'), 100)
+            return prev.filter(s => s !== slug);
+        }
+        const updated = [...prev, slug];
+        const city = Cities.find(c => c.slug === slug);
+        if (updated.length < 2) {
+            setAlertMsg(null);
+            setTimeout(() => setAlertMsg(`${city?.title || slug} selected - pick another city to compare`))
+        }
+        return updated;
+    });
+  };
 
   return (
     <>
@@ -405,6 +435,16 @@ function home() {
         </Box>
 
        </Box>
+       <Snackbar
+                 open={!!alertMsg}
+                 autoHideDuration={2500}
+                 onClose={() => setAlertMsg(null)}
+                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+             >
+                 <Alert onClose={() => setAlertMsg(null)} severity="success" variant="standard">
+                     {alertMsg}
+                 </Alert>
+             </Snackbar>
     </>
   );
 }

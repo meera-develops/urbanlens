@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Box, Grid, Snackbar, Alert } from '@mui/material';
 import Cards from "../../components/cityCard";
@@ -50,6 +50,13 @@ function explore() {
   const [compareList, setCompareList] = useState([]);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (compareList.length === 2) {
+      navigate(`/compare/${compareList[0]}/${compareList[1]}`);
+      setCompareList([]);
+    }
+  }, [compareList, navigate]);
+
   const handleCompare = (slug) => {
     setCompareList(prev => {
         if (prev.includes(slug)) {
@@ -58,13 +65,11 @@ function explore() {
             return prev.filter(s => s !== slug);
         }
         const updated = [...prev, slug];
-        if (updated.length === 2) {
-            navigate(`/compare/${updated[0]}/${updated[1]}`);
-            return [];
-        }
         const city = citiesInfo.find(c => c.slug === slug);
-        setAlertMsg(null);
-        setTimeout(() => setAlertMsg(`${city?.title || slug} selected - pick another city to compare`))
+        if (updated.length < 2) {
+            setAlertMsg(null);
+            setTimeout(() => setAlertMsg(`${city?.title || slug} selected - pick another city to compare`))
+        }
         return updated;
     });
   };
