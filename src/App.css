@@ -1,9 +1,12 @@
-:root {
-  min-height: 100%;
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background-color: #fcfbf6;
 }
 
 .bodyContent {
+  flex: 1;
   padding-left: 10px;
 }
 

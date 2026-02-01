@@ -22,10 +22,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 //and change the useState for a state that will persist for user logged in status and beyond refreshes
 
-function cityCard({ title, subtitle, image, slug, onCompare, isComparing }) {
+function cityCard({ title, subtitle, image, slug, onCompare, isComparing, defaultBookmarked = false, defaultLiked = false }) {
 
-    const [bookmarked, setBookmarked] = useState(false);
-    const [liked, setLiked] = useState(false);
+    const [bookmarked, setBookmarked] = useState(defaultBookmarked);
+    const [liked, setLiked] = useState(defaultLiked);
     const [alertMsg, setAlertMsg] = useState(null);
 
     const showAlert = (msg) => {

@@ -41,7 +41,7 @@ function cityCard({ title, qol, image, population, climate, price, commute, cost
     
     return (
         <>
-        <Card component={Link} to={`/citydetails/${slug}`}
+        <Card
         sx={{
             width: "100%",
             maxWidth: 340,
@@ -49,15 +49,13 @@ function cityCard({ title, qol, image, population, climate, price, commute, cost
             borderRadius: 2,
             overflow: "hidden",
             boxSizing: 'border-box',
-            cursor: 'pointer',
             boxShadow: 4,
-            textDecoration: 'none',
             display: 'block',
             transition: 'box-shadow 0.3s ease',
             '&:hover': {
                 boxShadow: '0 0 30px rgba(151, 208, 113, 0.6)'
             }
-        }} 
+        }}
         >
       {/* Image */}
       <CardMedia

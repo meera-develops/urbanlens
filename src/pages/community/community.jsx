@@ -9,7 +9,7 @@ import Select  from '@mui/material/Select';
 import MockComments from "../../components/mockComments.js";
 import CommunityMsg from "./communityMsg.jsx";
 import TextField from '@mui/material/TextField';
-import janeDoe from "../../assets/img/usersImages/jane_doe.jpg"
+import JohnDoe from "../../assets/img/usersImages/john_doe.jpg"
 
 //TODO about pagination 
 //Backend TODO - consider incorporating counter for likes button 
@@ -26,8 +26,8 @@ function community() {
 
     const commentToAdd = {
       id: comments.length + 1,
-      name: "Jane Doe",
-      image: janeDoe,
+      name: "Johnny Danger",
+      image: JohnDoe,
       date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
       msg: newComment,
     };

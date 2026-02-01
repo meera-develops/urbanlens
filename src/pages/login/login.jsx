@@ -97,6 +97,8 @@ function login () {
                     />
                     <Button
                     variant="contained"
+                    component={Link}
+                    to="/account"
                     size="large"
                     type="submit"
                     sx={{

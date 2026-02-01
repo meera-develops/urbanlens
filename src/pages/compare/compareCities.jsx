@@ -20,7 +20,7 @@ function compareCities() {
                 flexDirection: {xs: 'column', md: 'row'},
                 justifyContent: 'center',
                 alignItems: {xs: 'center', md: 'flex-start'},
-                gap: 0,
+                gap: {xs: 4, md: 0},
                 pt: 3,
             }}>
                 <CompareCard
