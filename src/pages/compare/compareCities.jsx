@@ -1,10 +1,13 @@
 import Cities from "../../components/citiesInfo.js";
 import { useParams } from "react-router-dom";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, Button } from "@mui/material";
 import { useTheme } from "@mui/material";
+import { Link } from "react-router-dom";
 import CompareCard from "./comparisionCityCard.jsx";
 
 function compareCities() {
+
+    const theme = useTheme();
 
     const { slug1, slug2 } = useParams();
     const city1 = Cities.find(city => city.slug === slug1);
@@ -15,6 +18,7 @@ function compareCities() {
 
     return (
         <>
+
             <Box sx={{
                 display: 'flex',
                 flexDirection: {xs: 'column', sm: 'row',},
@@ -45,6 +49,26 @@ function compareCities() {
                     cost_living={city2.avg_cost_of_living}
                     slug={city2.slug}
                 />
+            </Box>
+            <Box
+            sx={{
+                mt: 3,
+                display: 'flex',
+                justifySelf: 'center',
+            }}
+            >
+                <Button color="accent" variant="contained" size="large" component={Link}
+                    to={'/explore'}
+                    sx={{
+                        fontWeight: 600,
+                        fontFamily: "'Libre Baskerville'",
+                        fontSize: '1rem',
+                        mb: {xs: 2, md: 0}
+                        }}
+                >
+                    Discover More Cities 
+                </Button>
+                
             </Box>
         </>
     )
