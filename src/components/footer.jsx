@@ -51,14 +51,14 @@ function Footer () {
                     component="img"
                     src={logo}
                     alt="Urban Lens Key-shaped Logo"
-                    sx={{ width: '70%', height: 'auto' }}
+                    sx={{ width: { xs: '60%', sm: '50%', md: '70%', lg: '80%', }, maxWidth: 250, height: 'auto', mt: {xs: 1} }}
                     />  
                     </Box>
                 </Grid>
 
                 <Grid size={{ xs: 12, md: 6, lg: 7}}
                 sx={{
-                    mt: {xs: 1, lg: 3,}
+                    mt: {xs: 0, lg: 3,}
                 }}
                 >
                     <Grid container spacing={1} justifyContent="center">

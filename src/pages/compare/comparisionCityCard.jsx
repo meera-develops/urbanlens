@@ -43,9 +43,10 @@ function cityCard({ title, qol, image, population, climate, price, commute, cost
         <>
         <Card
         sx={{
-            width: "100%",
-            maxWidth: 340,
-            mx: 6,
+            width: {xs: '97%', md: '100%'},
+            maxWidth: {xs: 340, lg: 400, xl: 450},
+            ml: {xs: '-10px'},
+            mx: {md: 6},
             borderRadius: 2,
             overflow: "hidden",
             boxSizing: 'border-box',

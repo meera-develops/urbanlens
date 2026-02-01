@@ -2,7 +2,7 @@ import Cities from "../../components/citiesInfo.js";
 import { useParams } from "react-router-dom";
 import { Box, Typography, Grid } from "@mui/material";
 import { useTheme } from "@mui/material";
-import CompareCard from "../../components/comparisionCityCard.jsx";
+import CompareCard from "./comparisionCityCard.jsx";
 
 function compareCities() {
 
@@ -17,7 +17,7 @@ function compareCities() {
         <>
             <Box sx={{
                 display: 'flex',
-                flexDirection: {xs: 'column', md: 'row'},
+                flexDirection: {xs: 'column', sm: 'row',},
                 justifyContent: 'center',
                 alignItems: {xs: 'center', md: 'flex-start'},
                 gap: {xs: 4, md: 0},
