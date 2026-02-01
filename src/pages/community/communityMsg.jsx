@@ -6,7 +6,7 @@ import theme from "../../theme";
 import { useState } from "react";
 
 
-function communityMsg({ name, image, date, message }) {
+function communityMsg({ name, image, date, message, fullWidth }) {
 
     const [liked, setLiked] = useState(false);
 
@@ -16,16 +16,16 @@ function communityMsg({ name, image, date, message }) {
         <Box
         sx={{
             backgroundColor: 'rgba(144, 170, 85, 0.15)',
-            height: 'auto',
+            height: '100%',
             minHeight: '20vh',
-            width: {xs: '80vw', md: '40vw'},
+            width: fullWidth ? '95%' : {xs: '80vw', md: '40vw'},
             borderRadius: 2,
             pb: 2,
             pr: 2,
         }}
         >
-            <Grid>
-                <Grid size={{ xs: 12, md: 2}}>
+            <Grid container>
+                <Grid size={{ xs: 12, md: 12}}>
                     <Box
                     sx={{
                         display: 'flex',
