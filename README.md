@@ -76,7 +76,7 @@ Our goals with this project were to:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-org/your-repo.git
+   git clone https://github.com/capstone-urban-lens/urbanlens.git
    ```
 2. Install dependencies:
    ```bash
