@@ -183,7 +183,7 @@ const citiesInfo = [
         slug: "charleston",
         carousel: "lorem ipsum goes here",
         subtitle: "Charleston is a coastal city celebrated for its well-preserved historic district, colorful architecture, and Southern charm.",
-        description: ",Charleston is a historic coastal city in South Carolina known for its charming architecture, walkable neighborhoods, and relaxed Southern lifestyle. It blends a strong sense of history with modern growth, offering waterfront living, a vibrant food scene, and a community-oriented pace that attracts families, retirees, and creatives.",
+        description: "Charleston is a historic coastal city in South Carolina known for its charming architecture, walkable neighborhoods, and relaxed Southern lifestyle. It blends a strong sense of history with modern growth, offering waterfront living, a vibrant food scene, and a community-oriented pace that attracts families, retirees, and creatives.",
         price: "$3,200",
         qol: 'xx%',
         salary: 'yyy',

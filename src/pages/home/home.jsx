@@ -228,6 +228,7 @@ function home() {
         justifyContent: 'center',
         alignItems: 'center',
         p: 3,
+        ml: '-10px',
       }}
       >
         <Stack
