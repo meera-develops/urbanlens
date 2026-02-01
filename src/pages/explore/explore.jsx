@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Box, Grid, Snackbar, Alert } from '@mui/material';
+import { Box, Grid, Snackbar, Alert, Typography } from '@mui/material';
 import Cards from "../../components/cityCard";
 import citiesInfo from "../../components/citiesInfo";
 import Sidebar from "../../components/sidebar";
@@ -94,18 +94,26 @@ function explore() {
               pt: 3,
             }}
             >
-              {sortedCities.map((city) => (
-                  <Grid size={{ xs: 12, md: 6 }} key={city.id}>
-                    <Cards
-                      title={city.title}
-                      image={city.img}
-                      subtitle={city.subtitle}
-                      slug={city.slug}
-                      onCompare={handleCompare}
-                      isComparing={compareList.includes(city.slug)}
-                    />
+              {sortedCities.length === 0 ? (
+                  <Grid size={12}>
+                    <Box sx={{ textAlign: 'center', py: 5, color: '#545454', fontFamily: '"Pontano Sans", sans-serif', fontSize: '1.5rem' }}>
+                      No matching cities have been found
+                    </Box>
                   </Grid>
-                ))}
+                ) : (
+                  sortedCities.map((city) => (
+                    <Grid size={{ xs: 12, md: 6 }} key={city.id}>
+                      <Cards
+                        title={city.title}
+                        image={city.img}
+                        subtitle={city.subtitle}
+                        slug={city.slug}
+                        onCompare={handleCompare}
+                        isComparing={compareList.includes(city.slug)}
+                      />
+                    </Grid>
+                  ))
+                )}
             </Grid>
           </Grid>
         </Grid>
