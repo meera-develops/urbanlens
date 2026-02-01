@@ -113,7 +113,8 @@ function compareCities() {
             sx={{
                 mt: 3,
                 display: 'flex',
-                justifySelf: 'center',
+                justifyContent: 'center',
+                width: '100%',
             }}
             >
                 <Button color="accent" variant="contained" size="large" component={Link}
