@@ -87,6 +87,38 @@ Our goals with this project were to:
    npm run dev
    ```
 
+### Option 2: Running with Docker
+
+This project also supports running the frontend using **Docker**, allowing for a consistent development environment without needing to install dependencies directly on your machine.
+
+#### Prerequisites
+- Docker installed on your system
+
+#### Steps
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/capstone-urban-lens/urbanlens.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd urbanlens
+   ```
+3. Start the application using Docker Compose:
+   ```bash
+   docker compose up --build
+   ```
+
+Once running, the application will be available at `http://localhost:8080`.
+
+Alternatively, you can build and run the image manually:
+```bash
+docker build -t urban-lens .
+docker run -p 8080:3000 urban-lens
+```
+
+> Note: Docker support is currently focused on the frontend while the backend is in development.
+
 ---
 
 ## 📖 Future Improvements
