@@ -150,6 +150,7 @@ function SingleCityPage() {
                                 fontWeight: 600,
                                 fontFamily: "'Libre Baskerville'",
                                 fontSize: '1rem',
+                                mb: {xs: 2, md: 0}
                             }}
                             >
                             Comment on this City 

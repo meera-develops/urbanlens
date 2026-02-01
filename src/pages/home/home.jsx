@@ -66,6 +66,7 @@ function home() {
             justifyContent: "center",
             alignItems: "center",
             padding: 2,
+            ml: '-10px',
           }}
         >
           <Box
