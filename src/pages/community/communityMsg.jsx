@@ -6,9 +6,9 @@ import theme from "../../theme";
 import { useState } from "react";
 
 
-function communityMsg({ name, image, date, message, fullWidth }) {
+function communityMsg({ name, image, date, message, fullWidth, defaultLiked=false }) {
 
-    const [liked, setLiked] = useState(false);
+    const [liked, setLiked] = useState(defaultLiked);
 
 
     return (

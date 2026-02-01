@@ -52,7 +52,7 @@ function userAccount() {
           display: "flex",
           flexDirection: "column",
           pt: 4,
-          ml: 2,
+          ml: {xs: 0, md: 2},
         }}
       >
         <Typography variant="h2" color="text">
@@ -179,27 +179,27 @@ function userAccount() {
           }}
         >
           <Typography variant="h2" color="text">
-            Post Replies
+            Liked Posts
           </Typography>
           <Grid
             container
-            columnSpacing={{ xl: 2 }}
-            rowGap={{ md: 3 }}
+            columnGap={{ lg: 2 }}
+            rowGap={{ xs: 3, md: 3 }}
             sx={{
               px: { md: 0 },
               mt: 2,
-              flexWrap: { xl: "nowrap" },
-              overflowX: { xl: "auto" },
-              pb: { xl: 2 },
+              flexWrap: { lg: "nowrap" },
+              overflowX: { lg: "auto" },
+              pb: { lg: 2 },
               scrollbarWidth: "thin",
               scrollbarColor: `${theme.palette.primary.main} transparent`,
             }}
           >
             {replies.map((reply) => (
               <Grid
-                size={{ xs: 12, md: 4 }}
+                size={{ xs: 12, md: 6, xl: 4, }}
                 key={reply.id}
-                sx={{ flexShrink: { xl: 0 } }}
+                sx={{ flexShrink: { lg: 0 } }}
               >
                 <CommunityMsg
                   name={reply.name}
@@ -207,6 +207,8 @@ function userAccount() {
                   date={reply.date}
                   message={reply.msg}
                   fullWidth
+                  defaultLiked={true}
+
                 />
               </Grid>
             ))}
