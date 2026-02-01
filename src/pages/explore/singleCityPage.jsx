@@ -6,8 +6,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import { IoIosGitCompare } from "react-icons/io";
-import { IoMdGitCompare } from "react-icons/io";
+// import { IoIosGitCompare } from "react-icons/io";
+// import { IoMdGitCompare } from "react-icons/io";
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
@@ -21,7 +21,7 @@ function SingleCityPage() {
 
     const [bookmarked, setBookmarked] = useState(false);
     const [liked, setLiked] = useState(false);
-    const [compare, setCompared] = useState(false);
+    // const [compare, setCompared] = useState(false);
     const [alertMsg, setAlertMsg] = useState(null);
 
     const showAlert = (msg) => {
@@ -76,9 +76,9 @@ function SingleCityPage() {
                         >
                             <ChatBubbleOutlineOutlinedIcon />
                         </IconButton>
-                        <IconButton onClick={() => { setCompared(!compare); showAlert('Select another city to compare'); }} sx={{ color: theme.palette.primary.main }}>
+                        {/* <IconButton onClick={() => { setCompared(!compare); showAlert('Select another city to compare'); }} sx={{ color: theme.palette.primary.main }}>
                             {compare ? <IoMdGitCompare /> : <IoIosGitCompare /> }
-                        </IconButton>
+                        </IconButton> */}
                     </Box>
                     <Box>
                         <Typography variant="h2" color="primary"
