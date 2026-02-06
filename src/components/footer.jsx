@@ -71,12 +71,19 @@ function Footer () {
                             <FooterLink to="/login">Log In</FooterLink>
                         </Grid>
                         <Grid size={{ xs: 12, lg: 4}}>
-                            <Typography variant="body2">
+                            {/* <Typography variant="body2">
                                 Phone: (000) XXX-XXXX
+                            </Typography> */}
+                            {/* <Typography variant="body2">
+                                Email: access@xxx.com
+                            </Typography> */}
+                            <Typography variant="body2">
+                                This site is 
                             </Typography>
                             <Typography variant="body2">
-                                Email: access@xxx.com
+                                for educational purposes only
                             </Typography>
+                            
                         </Grid>
                     </Grid>
                 </Grid>
